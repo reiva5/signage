@@ -1,5 +1,5 @@
 ﻿/**
- * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
+ * @license Copyright (c) 2003-2018, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md or http://ckeditor.com/license
  */
 
@@ -13,10 +13,10 @@
  * (1) http://ckeditor.com/builder
  *     Visit online builder to build CKEditor from scratch.
  *
- * (2) http://ckeditor.com/builder/af865e889fe1ec55c9e1ad78ccd32ce0
+ * (2) http://ckeditor.com/builder/1886c7485804e9d824f7ea9da1545233
  *     Visit online builder to build CKEditor, starting with the same setup as before.
  *
- * (3) http://ckeditor.com/builder/download/af865e889fe1ec55c9e1ad78ccd32ce0
+ * (3) http://ckeditor.com/builder/download/1886c7485804e9d824f7ea9da1545233
  *     Straight download link to the latest version of CKEditor (Optimized) with the same setup as before.
  *
  * NOTE:
@@ -51,18 +51,33 @@ var CKBUILDER_CONFIG = {
 		'tests'
 	],
 	plugins : {
+		'Text2Speech' : 1,
+		'a11ychecker' : 1,
 		'a11yhelp' : 1,
 		'about' : 1,
+		'ajax' : 1,
+		'allmedias' : 1,
+		'allowsave' : 1,
+		'backgrounds' : 1,
+		'balloontoolbar' : 1,
 		'basicstyles' : 1,
 		'bidi' : 1,
 		'blockquote' : 1,
+		'bt_table' : 1,
+		'btbutton' : 1,
+		'btgrid' : 1,
+		'btquicktable' : 1,
+		'chart' : 1,
+		'ckwebspeech' : 1,
 		'clipboard' : 1,
 		'colorbutton' : 1,
 		'colordialog' : 1,
 		'contextmenu' : 1,
 		'copyformatting' : 1,
+		'cssanim' : 1,
 		'dialogadvtab' : 1,
 		'div' : 1,
+		'docfont' : 1,
 		'elementspath' : 1,
 		'enterkey' : 1,
 		'entities' : 1,
@@ -73,10 +88,12 @@ var CKBUILDER_CONFIG = {
 		'font' : 1,
 		'format' : 1,
 		'forms' : 1,
+		'glyphicons' : 1,
 		'horizontalrule' : 1,
 		'htmlwriter' : 1,
 		'iframe' : 1,
 		'image' : 1,
+		'imageuploader' : 1,
 		'indentblock' : 1,
 		'indentlist' : 1,
 		'justify' : 1,
@@ -90,6 +107,7 @@ var CKBUILDER_CONFIG = {
 		'pagebreak' : 1,
 		'pastefromword' : 1,
 		'pastetext' : 1,
+		'pbckcode' : 1,
 		'preview' : 1,
 		'print' : 1,
 		'removeformat' : 1,
@@ -99,8 +117,10 @@ var CKBUILDER_CONFIG = {
 		'selectall' : 1,
 		'showblocks' : 1,
 		'showborders' : 1,
+		'slideshow' : 1,
 		'smiley' : 1,
 		'sourcearea' : 1,
+		'sourcedialog' : 1,
 		'specialchar' : 1,
 		'stylescombo' : 1,
 		'tab' : 1,

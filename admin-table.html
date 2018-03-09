@@ -61,12 +61,18 @@
                                 <tr>
                                     <th scope="row" >1</th>
                                     <td>Profil STEI</td>
-                                    <td><a href="ckeditor/samples/edit.html" class="editor_edit"><i class="material-icons">mode_edit</i></a> <a href="" class="editor_remove"><i class="material-icons text-danger">delete</i></a></td>
+                                    <td>
+                                        <a href="ckeditor/samples/edit.html" class="editor_edit"><i class="material-icons">mode_edit</i></a>
+                                        <a onclick="confirmDelete()" style="cursor: pointer;"><i class="material-icons text-danger">delete</i></a>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <th scope="row">2</th>
                                     <td>Profil IF</td>
-                                    <td><a href="ckeditor/samples/edit.html" class="editor_edit"><i class="material-icons">mode_edit</i></a> <a href="" class="editor_remove"><i class="material-icons text-danger">delete</i></a></td>
+                                    <td>
+                                        <a href="ckeditor/samples/edit.html" class="editor_edit"><i class="material-icons">mode_edit</i></a>
+                                        <a onclick="confirmDelete()" style="cursor: pointer;"><i class="material-icons text-danger">delete</i></a>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -100,12 +106,18 @@
                                     <tr>
                                         <th scope="row" >1</th>
                                         <td>Bapak Dosen IF</td>
-                                        <td><a href="ckeditor/samples/edit.html" class="editor_edit"><i class="material-icons">mode_edit</i></a> <a href="" class="editor_remove"><i class="material-icons text-danger">delete</i></a></td>
+                                        <td>
+                                            <a href="ckeditor/samples/edit.html" class="editor_edit"><i class="material-icons">mode_edit</i></a>
+                                            <a onclick="confirmDelete()" style="cursor: pointer;"><i class="material-icons text-danger">delete</i></a>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <th scope="row">2</th>
                                         <td>Bapak Dosen STI</td>
-                                        <td><a href="ckeditor/samples/edit.html" class="editor_edit"><i class="material-icons">mode_edit</i></a> <a href="" class="editor_remove"><i class="material-icons text-danger">delete</i></a></td>
+                                        <td>
+                                            <a href="ckeditor/samples/edit.html" class="editor_edit"><i class="material-icons">mode_edit</i></a>
+                                            <a onclick="confirmDelete()" style="cursor: pointer;"><i class="material-icons text-danger">delete</i></a>
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -116,10 +128,32 @@
                         </div>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <!-- Delete Modal -->
+    <div class="modal fade" id="deleteSlideModal" tabindex="-1" role="dialog" aria-labelledby="deleteSlideModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteSlideModalLabel">Delete Slide</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Are you sure want to delete this slide?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Back</button>
+                    <button type="button" class="btn btn-danger">Delete</button>
+                </div>
+            </div>
+        </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js" integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/bootstrap-material-design@4.0.0-beta.4/dist/js/bootstrap-material-design.js" integrity="sha384-3xciOSDAlaXneEmyOo0ME/2grfpqzhhTcM4cE32Ce9+8DW/04AGoTACzQpphYGYe" crossorigin="anonymous"></script>
-    <script>$(document).ready(function() { $('body').bootstrapMaterialDesign(); });</script>
+    <script src="assets/js/admin-table.js"></script>
   </body>
 </html>

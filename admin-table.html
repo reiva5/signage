@@ -1,73 +1,13 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Material Design for Bootstrap fonts and icons -->
-    <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.16/js/dataTables.material.min.js"></script> -->
+   
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js" integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U" crossorigin="anonymous"></script>
-    <script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js" integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9" crossorigin="anonymous"></script>
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <!-- <script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js" integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U" crossorigin="anonymous"></script>
-    <script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js" integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9" crossorigin="anonymous"></script>
-    	<script src="ckeditor/ckeditor.js"></script>
-	<script src="ckeditor/samples/js/sample.js"></script>
-	<link rel="stylesheet" href="css/samples.css">
-	<link rel="stylesheet" href="toolbarconfigurator/lib/codemirror/neo.css"> -->
-
-    <!-- Material Design for Bootstrap CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-lite/1.1.0/material.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/dataTables.material.min.css">
-    <title>Hello, world!</title>
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.0.0-beta.4/dist/css/bootstrap-material-design.min.css" integrity="sha384-R80DC0KVBO4GSTw+wZ5x2zn2pu4POSErBkf8/fSFhPXHxvHJydT0CSgAP2Yo2r4I" crossorigin="anonymous">
+    <title>Slider List</title>
   </head>
   <body>
- 
-  <!-- <div class="adjoined-bottom">
-		<div class="grid-container">
-			<div class="grid-width-100 mt-10">
-                    <div id="editor">
-                        <table id="example" class="mdl-data-table" cellspacing="0" width="100%">
-                            <thead>
-                                <tr>
-                                    <th>No</th>
-                                    <th>Name</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tfoot>
-                                <tr>
-                                    <th>No</th>
-                                    <th>Name</th>
-                                    <th>Action</th>
-                                </tr>
-                            </tfoot>
-                            <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Profil STEI</td>
-                                        <td><a href="" class="editor_edit">Edit</a> / <a href="" class="editor_remove">Delete</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>Profil IF</td>
-                                        <td><a href="" class="editor_edit">Edit</a> / <a href="" class="editor_remove">Delete</a></td>
-                                    </tr>
-    
-                            </tbody>
-                        </table>
-                        </div>
-				</div>
-			</div>
-		</div>
-    </div> -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -89,75 +29,40 @@
         </div>
     </nav>
 
-    <div class="container mt-10 mr-auto ml-auto card" style="width : 80%;">
-        <table class="table">
-            <thead class="thead-dark">
-                <tr>
-                    <th scope="col">No</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th scope="row" >1</th>
-                    <td>Profil STEI</td>
-                    <td><a href="ckeditor/samples/edit.html" class="editor_edit">Edit</a> / <a href="" class="editor_remove">Delete</a></td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Profil IF</td>
-                    <td><a href="ckeditor/samples/edit.html" class="editor_edit">Edit</a> / <a href="" class="editor_remove">Delete</a></td>
-                </tr>
-            </tbody>
-          </table>
-          <div>
-              <button class="btn btn-primary">Add</button>
-          </div>
+    <h3 class="mt-3 text-center">Slider List</h3>
+
+    <div class="mt-2 mr-auto ml-auto">
+        <div class="container card" style="width : 80%;">
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">No</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row" >1</th>
+                        <td>Profil STEI</td>
+                        <td><a href="ckeditor/samples/edit.html" class="editor_edit">Edit</a> / <a href="" class="editor_remove">Delete</a></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>Profil IF</td>
+                        <td><a href="ckeditor/samples/edit.html" class="editor_edit">Edit</a> / <a href="" class="editor_remove">Delete</a></td>
+                    </tr>
+                </tbody>
+              </table>
+              
+              <div>
+                  <button class="btn btn-primary">Add</button>
+              </div>
+        </div>
     </div>
-    <!-- Optional JavaScript -->
-    <!-- <script>
-    
-    $(document).ready(function() {
-      $('#example').DataTable( {
-          columnDefs: [
-              {
-                  targets: [ 0, 1, 2 ],
-                  className: 'mdl-data-table__cell--non-numeric'
-              }
-          ],
-          "pagingType": "full_numbers"
-      } );
-    (function($) {
-        $.fn.changeElementType = function(newType) {
-            var attrs = {};
-
-            $.each(this[0].attributes, function(idx, attr) {
-                attrs[attr.nodeName] = attr.nodeValue;
-            });
-
-            this.replaceWith(function() {
-                return $("<" + newType + "/>", attrs).append($(this).contents());
-            });
-        }
-        })(jQuery);
-    });</script>
-    
-    <script>
-		// The inline editor should be enabled on an element with "contenteditable" attribute set to "true".
-		// Otherwise CKEditor will start in read-only mode.
-		var introduction = document.getElementById( 'editor' );
-		editor.setAttribute( 'contenteditable', true );
-
-		CKEDITOR.inline( 'editor', {
-			// Allow some non-standard markup that we used in the introduction.
-			extraAllowedContent: 'a(documentation);abbr[title];code',
-			removePlugins: 'stylescombo',
-			extraPlugins: 'sourcedialog',
-			// Show toolbar on startup (optional).
-			startupFocus: true
-		} );
-	</script> -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js" integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/bootstrap-material-design@4.0.0-beta.4/dist/js/bootstrap-material-design.js" integrity="sha384-3xciOSDAlaXneEmyOo0ME/2grfpqzhhTcM4cE32Ce9+8DW/04AGoTACzQpphYGYe" crossorigin="anonymous"></script>
     <script>$(document).ready(function() { $('body').bootstrapMaterialDesign(); });</script>
   </body>
 </html>

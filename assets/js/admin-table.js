@@ -6,3 +6,7 @@ $(document).ready(function() {
 function confirmDelete(){
     $('#deleteSlideModal').modal('show');
 }
+
+function editSlide(){
+    $('#editSlideModal').modal('show');
+}

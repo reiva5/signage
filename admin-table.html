@@ -40,6 +40,7 @@
                         <h5 class="col-6">Profil</h5>
                         <div class="col-6">
                             <button class="btn btn-primary" style="float: right;" data-toggle="collapse" data-target="#collapse_1" aria-expanded="false" aria-controls="collapse_1"><i class="material-icons">expand_more</i></button>
+                            <button class="btn btn-primary" style="float: right" onclick="editSlide()"><i class="material-icons">mode_edit</i></button>
                             <label class="switch" style="float: right;">
                                 <input type="checkbox">
                                 <span class="slider round"></span>
@@ -85,6 +86,7 @@
                             <h5 class="col-6">Dosen</h5>
                             <div class="col-6">
                                 <button class="btn btn-primary" style="float: right;" data-toggle="collapse" data-target="#collapse_2" aria-expanded="false" aria-controls="collapse_2"><i class="material-icons">expand_more</i></button>
+                                <button class="btn btn-primary" style="float: right" onclick="editSlide()"><i class="material-icons">mode_edit</i></button>
                                 <label class="switch" style="float: right;">
                                     <input type="checkbox">
                                     <span class="slider round"></span>
@@ -142,11 +144,35 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    Are you sure want to delete this slide?
+                    Are you sure want to delete this modal?
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Back</button>
                     <button type="button" class="btn btn-danger">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Modal -->
+    <div class="modal fade" id="editSlideModal" tabindex="-1" role="dialog" aria-labelledby="editSlideModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editSlideModalLabel">Edit Slide</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="name">Slide Name</label>
+                        <input class="form-control" type="text" id="name" name="name" value="Namanya" style="color: black">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Back</button>
+                    <button type="button" class="btn btn-success">Edit</button>
                 </div>
             </div>
         </div>

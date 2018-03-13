@@ -10,3 +10,7 @@ function confirmDelete(){
 function editSlide(){
     $('#editSlideModal').modal('show');
 }
+
+function addPlaylist(){
+    $('#addPlaylistModal').modal('show');
+}

@@ -6,7 +6,8 @@ function DB(){
     conn = mysql.createConnection({
         host: "localhost",
         user: "root",
-        password: ""
+        password: "",
+        database: "signage"
     });
 
     conn.connect(function(err){

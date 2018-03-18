@@ -51,4 +51,15 @@ method.editUser = function (id, username, password) {
     });
 }
 
+method.deleteUser = function (id) {
+    var conn = db.getConnection();
+    return new Promise( (resolve, reject) => {
+        conn.query("DELETE FROM `user` WHERE `user_id`=" + id, function(err, result, field){
+            if (err)
+                reject(err);
+            resolve(result);
+        });
+    });
+}
+
 module.exports = User;

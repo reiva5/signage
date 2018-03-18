@@ -39,6 +39,16 @@ method.addUser = function(username, password){
     });
 }
 
-
+method.editUser = function (id, username, password) {
+    var conn = db.getConnection();
+    return new Promise( (resolve, reject) => {
+        conn.query("UPDATE `user` SET `username` = '" + username + "', `password` = '" + password + "' WHERE `user_id` = " + id, 
+            function (err, result, field){
+            if (err)
+                reject(err);
+            resolve(result);
+        });
+    });
+}
 
 module.exports = User;

@@ -27,4 +27,18 @@ method.getUser = function(id){
     });
 }
 
+method.addUser = function(username, password){
+    var conn = db.getConnection();
+    return new Promise( (resolve, reject) => {
+        conn.query("INSERT INTO `user`(`username`, `password`) VALUES ('" + username 
+            + "', '" + password + "')", function(err, result, field) {
+            if (err)
+                reject(err);
+            resolve(result);
+        })
+    });
+}
+
+
+
 module.exports = User;

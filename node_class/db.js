@@ -20,4 +20,11 @@ method.getConnection = function(){
     return conn;
 }
 
+method.disconnect = function(){
+    conn.end(function(err) {
+        if (err) throw err;
+        console.log("Disconnected from database");
+    })
+}
+
 module.exports = DB;

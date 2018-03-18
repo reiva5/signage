@@ -5,3 +5,5 @@ var db = new DB();
 var conn = db.getConnection();
 
 console.log(conn);
+
+db.disconnect();

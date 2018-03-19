@@ -58,6 +58,21 @@ router.post("/delete", function(req, res){
         }
         user.destroy();
     });
-})
+});
+
+router.get("/get_all", function(req, res){
+    var user = new User();
+    user.getAllUser().then(result => {
+        var user_array = [];
+        result.forEach(element => {
+            user_array.push({
+                username : element.username,
+                password : element.password
+            });
+        });
+        res.json(user_array);
+        user.destroy();
+    });
+});
 
 module.exports = router;

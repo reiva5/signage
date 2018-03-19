@@ -23,10 +23,10 @@ method.getPassword = function(){
     return this.password;
 }
 
-method.getUser = function(id){
+method.getUser = function(username){
     var conn = db.getConnection();
     return new Promise( (resolve, reject) => {
-        conn.query("SELECT * FROM user WHERE `user_id`=" + id, function (err, result, field){
+        conn.query("SELECT * FROM user WHERE `username`='" +username + "' LIMIT 1", function (err, result, field){
             if (err) 
                 return reject(err);
             result.forEach(element => {
@@ -51,10 +51,10 @@ method.addUser = function(username, password){
     });
 }
 
-method.editUser = function (id, username, password) {
+method.editUser = function (old_user, username, password) {
     var conn = db.getConnection();
     return new Promise( (resolve, reject) => {
-        conn.query("UPDATE `user` SET `username` = '" + username + "', `password` = '" + password + "' WHERE `user_id` = " + id, 
+        conn.query("UPDATE `user` SET `username` = '" + username + "', `password` = '" + password + "' WHERE `username` = '" + old_user + "'", 
             function (err, result, field){
             if (err)
                 reject(err);
@@ -63,10 +63,10 @@ method.editUser = function (id, username, password) {
     });
 }
 
-method.deleteUser = function (id) {
+method.deleteUser = function (username) {
     var conn = db.getConnection();
     return new Promise( (resolve, reject) => {
-        conn.query("DELETE FROM `user` WHERE `user_id`=" + id, function(err, result, field){
+        conn.query("DELETE FROM `user` WHERE `username`='" + username + "'", function(err, result, field){
             if (err)
                 reject(err);
             resolve(result);

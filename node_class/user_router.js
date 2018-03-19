@@ -21,7 +21,6 @@ router.post("/insert", function(req, res){
 router.get("/get", function(req, res){
     var user = new User();
     user.getUser(req.query.username).then( result => {
-        console.log(result);
         if (result) {
             res.json({
                 username : result.username,
@@ -32,6 +31,21 @@ router.get("/get", function(req, res){
         }
         user.destroy();
     });
-})
+});
+
+router.post("/edit", function(req, res){
+    var user = new User();
+    var old_user = req.query.old_user;
+    var new_user = req.query.new_user;
+    var password = req.query.password;
+    user.editUser(old_user, new_user, password).then(result => {
+        if (result.affectedRows > 0){
+            res.json({status : "success"});
+        } else {
+            res.json({status : "failed"});
+        }
+        user.destroy();
+    })
+});
 
 module.exports = router;

@@ -24,10 +24,8 @@ method.getUser = function(username){
         conn.query("SELECT * FROM user WHERE `username`='" +username + "' LIMIT 1", function (err, result, field){
             if (err) 
                 return reject(err);
-            console.log(result);
             if (result.length > 0){
                 result.forEach(element => {
-                    console.log(element);
                     this.username = element.username;
                     this.password = element.password; 
                 });

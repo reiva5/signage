@@ -48,4 +48,16 @@ router.post("/edit", function(req, res){
     })
 });
 
+router.post("/delete", function(req, res){
+    var user = new User();
+    user.deleteUser(req.query.username).then(result =>{
+        if (result.affectedRows > 0){
+            res.json({status : "success"});
+        } else {
+            res.json({status : "failed"});
+        }
+        user.destroy();
+    });
+})
+
 module.exports = router;

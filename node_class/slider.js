@@ -46,8 +46,8 @@ method.getSliderByPlaylist =  function(playlist_id) {
         conn.query("SELECT * FROM slider_content WHERE `playlist_id`=" + playlist_id, function (err, result, field){
             if (err) 
                 return reject(err);
-            });
             resolve(result);
+        });
     });
 }
 

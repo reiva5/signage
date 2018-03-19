@@ -7,7 +7,6 @@ router.get("/", function (req, res){
 });
 
 router.post("/insert", function(req, res){
-    console.log(req.query.username);
     var user = new User();
     user.addUser(req.query.username, req.query.password).then(result =>{
         if(result.affectedRows > 0){
@@ -15,7 +14,24 @@ router.post("/insert", function(req, res){
         } else {
             res.json({status: "error"});
         }
-    })
+        user.destroy();
+    });
 });
+
+router.get("/get", function(req, res){
+    var user = new User();
+    user.getUser(req.query.username).then( result => {
+        console.log(result);
+        if (result) {
+            res.json({
+                username : result.username,
+                password : result.password
+            });
+        } else {
+            res.json({});
+        }
+        user.destroy();
+    });
+})
 
 module.exports = router;

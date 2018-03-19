@@ -5,14 +5,9 @@ var db;
 var method = User.prototype;
 
 function User(){
-    this.id = null;
     this.username = null;
     this.password = null;
     db = new DB();
-}
-
-method.getId = function(){
-    return this.id;
 }
 
 method.getUsername = function(){
@@ -29,12 +24,17 @@ method.getUser = function(username){
         conn.query("SELECT * FROM user WHERE `username`='" +username + "' LIMIT 1", function (err, result, field){
             if (err) 
                 return reject(err);
-            result.forEach(element => {
-                this.id = element.user_id;
-                this.username = element.username;
-                this.password = element.password; 
-            });
-            resolve(this);
+            console.log(result);
+            if (result.length > 0){
+                result.forEach(element => {
+                    console.log(element);
+                    this.username = element.username;
+                    this.password = element.password; 
+                });
+                resolve(this);
+            } else {
+                resolve(null);
+            }
         });
     });
 }

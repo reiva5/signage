@@ -11,6 +11,18 @@ function User(){
     db = new DB();
 }
 
+method.getId = function(){
+    return this.id;
+}
+
+method.getUsername = function(){
+    return this.username;
+}
+
+method.getPassword = function(){
+    return this.password;
+}
+
 method.getUser = function(id){
     var conn = db.getConnection();
     return new Promise( (resolve, reject) => {

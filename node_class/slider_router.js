@@ -110,4 +110,19 @@ router.post("/delete",function(req,res){
     });
 });
 
+router.post("/add", function(req, res){
+    var slider = new Slider();
+    var playlist_id = req.query.playlist_id;
+    var slider_name = req.query.slider_name;
+    var slider_content = req.query.slider_content;
+    slider.addSlider(playlist_id, slider_name, slider_content).then(result => {
+        if(result.affectedRows > 0){
+            res.json({ status: "success"});
+        } else {
+            res.json({ status: "failed"});
+        }
+        slider.destroy();
+    });
+});
+
 module.exports = router;

@@ -8,9 +8,13 @@ router.get("/", function (req, res){
 
 router.post("/insert", function(req, res){
     var playlist = new Playlist();
+    console.log(req);
     playlist.addPlaylist(req.query.name).then(result =>{
         if(result.affectedRows > 0){
-            res.json({status: "success"});
+            res.json({
+                status : "success",
+                id : result.insertId
+            });
         } else {
             res.json({status: "error"});
         }
@@ -47,8 +51,9 @@ router.get("/get_all", function(req, res){
         playlist.destroy();
     });
 });
-router.get("/delete", function(req, res){
+router.post("/delete", function(req, res){
     var playlist = new Playlist();
+    console.log(req);
     playlist.deletePlaylist(req.query.id).then(result =>{
         if(result.affectedRows > 0){
             res.json({status: "success"});
@@ -58,7 +63,7 @@ router.get("/delete", function(req, res){
         playlist.destroy();
     });
 });
-router.get("/update", function(req, res){
+router.post("/update", function(req, res){
     var playlist = new Playlist();
     playlist.editPlaylist(req.query.id,req.query.name).then(result =>{
         if(result.affectedRows > 0){

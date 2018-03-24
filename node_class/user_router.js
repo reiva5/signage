@@ -8,7 +8,7 @@ router.get("/", function (req, res){
 
 router.post("/insert", function(req, res){
     var user = new User();
-    user.addUser(req.query.username, req.query.password).then(result =>{
+    user.addUser(req.body.username, req.body.password).then(result =>{
         if(result.affectedRows > 0){
             res.json({status: "success"});
         } else {
@@ -20,7 +20,7 @@ router.post("/insert", function(req, res){
 
 router.get("/get", function(req, res){
     var user = new User();
-    user.getUser(req.query.username).then( result => {
+    user.getUser(req.body.username).then( result => {
         if (result) {
             res.json({
                 username : result.username,
@@ -35,9 +35,9 @@ router.get("/get", function(req, res){
 
 router.post("/edit", function(req, res){
     var user = new User();
-    var old_user = req.query.old_user;
-    var new_user = req.query.new_user;
-    var password = req.query.password;
+    var old_user = req.body.old_user;
+    var new_user = req.body.new_user;
+    var password = req.body.password;
     user.editUser(old_user, new_user, password).then(result => {
         if (result.affectedRows > 0){
             res.json({status : "success"});
@@ -50,7 +50,7 @@ router.post("/edit", function(req, res){
 
 router.post("/delete", function(req, res){
     var user = new User();
-    user.deleteUser(req.query.username).then(result =>{
+    user.deleteUser(req.body.username).then(result =>{
         if (result.affectedRows > 0){
             res.json({status : "success"});
         } else {

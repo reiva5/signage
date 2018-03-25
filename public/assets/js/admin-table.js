@@ -1,12 +1,30 @@
 var active_playlist = null;
+var active_slider = null;
 
 $(document).ready(function() { 
     $('body').bootstrapMaterialDesign(); 
     
 });
 
-function confirmDeleteSlide(){
+function confirmDeleteSlide(id){
+    active_slider = id;
     $('#deleteSlideModal').modal('show');
+}
+
+function submitDeleteSlide(slideId) {
+    $.post(
+        "http://localhost:3000/slider/delete", 
+        {slider_id : active_slider},
+        function (data, status) {
+            if (data.status == "success"){
+                location.reload();
+            } else {
+                alert(data);
+            }
+            active_slider = null;
+        }
+    );
+    location.reload();
 }
 
 function confirmDeletePlaylist(){
@@ -114,18 +132,6 @@ function updateSlideContent(slideId) {
             slider_id : slideId,
             slider_content : $('#editSlideModal').find('input[name="name"]')[0].value
         },
-        function (data, status) {
-            alert(JSON.stringify(data));
-            alert(status);
-        }
-    );
-    location.reload();
-}
-
-function deleteSlide(slideId) {
-    $.post(
-        "http://localhost:3000/slider/delete", 
-        {slider_id : slideId},
         function (data, status) {
             alert(JSON.stringify(data));
             alert(status);

@@ -52,7 +52,7 @@ html(lang='en')
                                                 td
                                                     a.editor_edit(href='/view/edit_slider?id=' + content.slider_id)
                                                         i.material-icons mode_edit
-                                                    a(onclick='confirmDelete(' + content.slider_id + ')', style='cursor: pointer;')
+                                                    a(onclick='confirmDeleteSlide(' + content.slider_id + ')', style='cursor: pointer;')
                                                         i.material-icons.text-danger delete
                                             - index = index + 1
                                 div
@@ -72,7 +72,7 @@ html(lang='en')
                         | Are you sure want to delete this modal?
                     .modal-footer
                         button.btn.btn-secondary(type='button', data-dismiss='modal') Back
-                        button.btn.btn-danger(type='button') Delete
+                        button.btn.btn-danger(type='button' onclick="submitDeleteSlide()") Delete
         // Edit Modal
         #editPlaylistModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='editSlideModalLabel', aria-hidden='true')
             .modal-dialog(role='document')

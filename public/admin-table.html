@@ -40,7 +40,8 @@
                         <h5 class="col-6">Profil</h5>
                         <div class="col-6">
                             <button class="btn btn-primary" style="float: right;" data-toggle="collapse" data-target="#collapse_1" aria-expanded="false" aria-controls="collapse_1"><i class="material-icons">expand_more</i></button>
-                            <button class="btn btn-primary" style="float: right" onclick="editSlide()"><i class="material-icons">mode_edit</i></button>
+                            <button class="btn btn-primary" style="float: right" onclick="confirmDeletePlaylist()"><i class="material-icons">delete</i></button>
+                            <button class="btn btn-primary" style="float: right" onclick="confirmEditPlaylist()"><i class="material-icons">mode_edit</i></button>
                             <label class="switch" style="float: right;">
                                 <input type="checkbox">
                                 <span class="slider round"></span>
@@ -139,7 +140,7 @@
         </div>
     </div>
 
-    <!-- Delete Modal -->
+    <!-- Delete Slide Modal -->
     <div class="modal fade" id="deleteSlideModal" tabindex="-1" role="dialog" aria-labelledby="deleteSlideModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -150,7 +151,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    Are you sure want to delete this modal?
+                    Are you sure want to delete this slide?
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Back</button>
@@ -160,25 +161,46 @@
         </div>
     </div>
 
-    <!-- Edit Modal -->
-    <div class="modal fade" id="editSlideModal" tabindex="-1" role="dialog" aria-labelledby="editSlideModalLabel" aria-hidden="true">
+    <!-- Delete Playlist Modal -->
+    <div class="modal fade" id="deletePlaylistModal" tabindex="-1" role="dialog" aria-labelledby="deletePlaylistModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="editSlideModalLabel">Edit Slide</h5>
+                    <h5 class="modal-title" id="deletePlaylistModalLabel">Delete Slide</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Are you sure want to delete this playlist?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Back</button>
+                    <button type="button" class="btn btn-danger" onclick="deletePlaylist(1)">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Playlist Modal -->
+    <div class="modal fade" id="editPlaylistModal" tabindex="-1" role="dialog" aria-labelledby="editSlideModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editSlideModalLabel">Edit Playlist</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="name">Slide Name</label>
+                        <label for="name">Playlist Name</label>
                         <input class="form-control" type="text" id="name" name="name" value="Namanya" style="color: black">
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Back</button>
-                    <button type="button" class="btn btn-success">Edit</button>
+                    <button type="button" class="btn btn-success" onclick="deleteSlide(1)">Edit</button>
                 </div>
             </div>
         </div>
@@ -207,7 +229,7 @@
             </div>
         </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js" integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/bootstrap-material-design@4.0.0-beta.4/dist/js/bootstrap-material-design.js" integrity="sha384-3xciOSDAlaXneEmyOo0ME/2grfpqzhhTcM4cE32Ce9+8DW/04AGoTACzQpphYGYe" crossorigin="anonymous"></script>
     <script src="assets/js/admin-table.js"></script>

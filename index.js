@@ -1,7 +1,11 @@
 var express = require('express');
 var session = require('express-session');
 var app = express();
-var Slider = require("./node_class/slider_router");
+var Slider = require('./node_class/slider_router');
+var Playlist = require('./node_class/playlist_router');
+var User = require('./node_class/playlist_router');
+var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser');
 
 app.set('views', __dirname + '/views');
 app.set("view engine", "pug")
@@ -13,6 +17,10 @@ app.use(session({
     saveUninitialized : true
 }));
 app.use(express.static('public'));
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
 
 app.get("/render", function(req, res){
     res.render("index")
@@ -41,6 +49,7 @@ app.post("/login", function(req, res){
 });
 
 app.use("/slider", Slider);
+app.use("/playlist", Playlist);
 
 app.listen(3000, function(){
     console.log("Apps started on port 3000");

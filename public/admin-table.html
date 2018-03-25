@@ -40,7 +40,8 @@
                         <h5 class="col-6">Profil</h5>
                         <div class="col-6">
                             <button class="btn btn-primary" style="float: right;" data-toggle="collapse" data-target="#collapse_1" aria-expanded="false" aria-controls="collapse_1"><i class="material-icons">expand_more</i></button>
-                            <button class="btn btn-primary" style="float: right" onclick="editSlide()"><i class="material-icons">mode_edit</i></button>
+                            <button class="btn btn-primary" style="float: right" onclick="confirmDeletePlaylist()"><i class="material-icons">delete</i></button>
+                            <button class="btn btn-primary" style="float: right" onclick="confirmEditPlaylist()"><i class="material-icons">mode_edit</i></button>
                             <label class="switch" style="float: right;">
                                 <input type="checkbox">
                                 <span class="slider round"></span>
@@ -139,7 +140,7 @@
         </div>
     </div>
 
-    <!-- Delete Modal -->
+    <!-- Delete Slide Modal -->
     <div class="modal fade" id="deleteSlideModal" tabindex="-1" role="dialog" aria-labelledby="deleteSlideModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -150,11 +151,32 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    Are you sure want to delete this modal?
+                    Are you sure want to delete this slide?
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Back</button>
                     <button type="button" class="btn btn-danger">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Delete Playlist Modal -->
+    <div class="modal fade" id="deletePlaylistModal" tabindex="-1" role="dialog" aria-labelledby="deletePlaylistModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deletePlaylistModalLabel">Delete Slide</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Are you sure want to delete this playlist?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Back</button>
+                    <button type="button" class="btn btn-danger" onclick="deletePlaylist(1)">Delete</button>
                 </div>
             </div>
         </div>

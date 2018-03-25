@@ -2,6 +2,7 @@ var express = require('express');
 var session = require('express-session');
 var app = express();
 var Slider = require("./node_class/slider_router");
+var Playlist = require("./node_class/playlist_router");
 
 app.set('views', __dirname + '/views');
 app.set("view engine", "pug")

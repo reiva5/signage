@@ -30,7 +30,7 @@ html(lang='en')
                                 .col-6
                                     button.btn.btn-primary(style='float: right;', data-toggle='collapse', data-target='#collapse_' + playlist.playlist_id, aria-expanded='false', aria-controls='collapse_' + playlist.playlist_id)
                                         i.material-icons expand_more
-                                    button.btn.btn-primary(style='float: right', onclick='editSlide(' + playlist.playlist_id + ')')
+                                    button.btn.btn-primary(style='float: right', onclick='editPlaylist(' + playlist.playlist_id +',"' + playlist.playlist_name +  '")')
                                         i.material-icons mode_edit
                                     label.switch(style='float: right;')
                                         input(type='checkbox')
@@ -74,7 +74,7 @@ html(lang='en')
                         button.btn.btn-secondary(type='button', data-dismiss='modal') Back
                         button.btn.btn-danger(type='button') Delete
         // Edit Modal
-        #editSlideModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='editSlideModalLabel', aria-hidden='true')
+        #editPlaylistModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='editSlideModalLabel', aria-hidden='true')
             .modal-dialog(role='document')
                 .modal-content
                     .modal-header
@@ -87,7 +87,7 @@ html(lang='en')
                             input#name.form-control(type='text', name='name', value='Namanya', style='color: black')
                     .modal-footer
                         button.btn.btn-secondary(type='button', data-dismiss='modal') Back
-                        button.btn.btn-success(type='button') Edit
+                        button.btn.btn-success(type='button', onclick="submitEditPlaylist()") Edit
         // Add Modal
         #addPlaylistModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='addPlaylistModalLabel', aria-hidden='true')
             .modal-dialog(role='document')

@@ -1,3 +1,5 @@
+var active_playlist = null;
+
 $(document).ready(function() { 
     $('body').bootstrapMaterialDesign(); 
     
@@ -15,9 +17,6 @@ function confirmEditSlide(){
     $('#editSlideModal').modal('show');
 }
 
-function confirmEditPlaylist(){
-    $('#editPlaylistModal').modal('show');
-}
 
 function addPlaylist(){
     $('#addPlaylistModal').modal('show');
@@ -41,20 +40,30 @@ function submitAddPlaylist(){
     )
 };
 
-function updatePlaylistName(playlistId) {
+function editPlaylist(id, name){
+    active_playlist = id;
+    $('#editPlaylistModal').find('input[name="name"]')[0].value = name;
+    $('#editPlaylistModal').modal('show');
+}
+
+function submitEditPlaylist(){
     $.post(
         "http://localhost:3000/playlist/update", 
         {
-            id : playlistId,
+            id : active_playlist,
             name : $('#editPlaylistModal').find('input[name="name"]')[0].value
         },
         function (data, status) {
-            alert(JSON.stringify(data));
-            alert(status);
+            if(data.status == "success"){
+                location.reload();
+            } else {
+                alert(data);
+            }
+            active_playlist = null;
         }
     );
-    location.reload();
 }
+
 
 function deletePlaylist(playlistId) {
     $.post(

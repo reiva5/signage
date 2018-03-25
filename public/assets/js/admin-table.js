@@ -24,11 +24,27 @@ function submitDeleteSlide(slideId) {
             active_slider = null;
         }
     );
-    location.reload();
 }
 
-function confirmDeletePlaylist(){
+function confirmDeletePlaylist(id){
+    active_playlist = id;
     $('#deletePlaylistModal').modal('show');
+}
+
+function submitDeletePlaylist() {
+    $.post(
+        "http://localhost:3000/playlist/delete", 
+        {id : active_playlist},
+        function (data, status) {
+            console.log(data);
+            if(data.status == "success"){
+                location.reload();
+            } else {
+                alert(data);
+            }
+            active_playlist = null;
+        }
+    );
 }
 
 function confirmEditSlide(){
@@ -83,17 +99,7 @@ function submitEditPlaylist(){
 }
 
 
-function deletePlaylist(playlistId) {
-    $.post(
-        "http://localhost:3000/playlist/delete", 
-        {id : playlistId},
-        function (data, status) {
-            alert(JSON.stringify(data));
-            alert(status);
-        }
-    );
-    location.reload();
-}
+
 
 function updateSlideName(slideId) {
     $.post(

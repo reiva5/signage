@@ -11,15 +11,29 @@ router.get("/admin_dashboard", function(req, res){
         var slider = new Slider();
         slider.getAllSlider().then(result => {
             var array_slider = [];
+            var curr_playlist_id = 1;
+            var playlist_array = []
             result.forEach(element => {
-                array_slider.push({
+                if (curr_playlist_id != element.playlist_id) {
+                    array_slider.push({
+                        playlist_id : curr_playlist_id,
+                        content : playlist_array
+                    });
+                    playlist_array = []
+                    curr_playlist_id += 1;
+                }
+                playlist_array.push({
                     slider_id : element.slider_id,
                     playlist_id : element.playlist_id,
                     slider_name : element.slider_name,
                     slider_content : element.slider_content 
                 });
             });
-            res.render("admin-table", array_slider);
+            array_slider.push({
+                playlist_id : curr_playlist_id,
+                content : playlist_array
+            });
+            res.render("admin-table", {playlists: array_slider});
         });
     } else {
         res.redirect("/view/admin");

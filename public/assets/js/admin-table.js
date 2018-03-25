@@ -98,7 +98,9 @@ function submitEditPlaylist(){
     );
 }
 
-
+function addSlide() {
+    window.location = "/view/add_slider";
+}
 
 
 function updateSlideName(slideId) {

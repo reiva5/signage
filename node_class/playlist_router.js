@@ -60,7 +60,7 @@ router.post("/delete", function(req, res){
         } else {
             res.json({status: "failed"});
         }
-        playlist.destroy();
+        // playlist.destroy();
     });
 });
 router.post("/update", function(req, res){

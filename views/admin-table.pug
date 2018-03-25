@@ -59,10 +59,10 @@ html(lang='en')
                                                             i.material-icons.text-danger delete
                                                 - index = index + 1
                                 div
-                                    button.btn.btn-primary(style='float: right;') Add Slide
+                                    button.btn.btn-primary(style='float: right;' onclick="addSlide()") Add Slide
 
                 div.text-center.mt-2
-                    button.btn.btn-lg.btn-primary(onclick='addPlaylist()') Add PLaylist
+                    button.btn.btn-lg.btn-primary(onclick='addPlaylist()') Add Playlist
         // Delete Slide Modal
         #deleteSlideModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='deleteSlideModalLabel', aria-hidden='true')
             .modal-dialog(role='document')
@@ -94,7 +94,7 @@ html(lang='en')
             .modal-dialog(role='document')
                 .modal-content
                     .modal-header
-                        h5#editSlideModalLabel.modal-title Edit Slide
+                        h5#editSlideModalLabel.modal-title Edit Playlist
                         button.close(type='button', data-dismiss='modal', aria-label='Close')
                             span(aria-hidden='true') ×
                     .modal-body

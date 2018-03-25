@@ -63,11 +63,14 @@ router.get("/edit_slider", function(req, res){
     var slider = new Slider();
     slider.getSlider(req.query.id).then(result => {
         if (result != null){
-            res.render("edit_slider", {slider : result});
+            res.render("edit_slider", {slider : result, mode : "edit"});
         } else {
             res.redirect("admin_dashboard");
         }
     });
 })
 
+router.get("/add_slider", function(req, res){
+    res.render("edit_slider", {slider : null, mode : "add"});
+})
 module.exports = router;

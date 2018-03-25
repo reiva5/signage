@@ -20,7 +20,7 @@ html
             .grid-container
                 .grid-width-100
                     #editor
-                        p #{slider.slider_content}
+                        p!= slider.slider_content
         script.
             $(document).ready(function() {
             initSample();

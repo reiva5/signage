@@ -3,8 +3,7 @@ var session = require('express-session');
 var app = express();
 var Slider = require('./node_class/slider_router');
 var Playlist = require('./node_class/playlist_router');
-var User = require('./node_class/playlist_router');
-var cookieParser = require('cookie-parser');
+var User = require('./node_class/user_router');
 var bodyParser = require('body-parser');
 
 app.set('views', __dirname + '/views');
@@ -20,7 +19,6 @@ app.use(express.static('public'));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
 
 app.get("/render", function(req, res){
     res.render("index")

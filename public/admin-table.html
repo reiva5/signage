@@ -182,25 +182,25 @@
         </div>
     </div>
 
-    <!-- Edit Modal -->
-    <div class="modal fade" id="editSlideModal" tabindex="-1" role="dialog" aria-labelledby="editSlideModalLabel" aria-hidden="true">
+    <!-- Edit Playlist Modal -->
+    <div class="modal fade" id="editPlaylistModal" tabindex="-1" role="dialog" aria-labelledby="editSlideModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="editSlideModalLabel">Edit Slide</h5>
+                    <h5 class="modal-title" id="editSlideModalLabel">Edit Playlist</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="name">Slide Name</label>
+                        <label for="name">Playlist Name</label>
                         <input class="form-control" type="text" id="name" name="name" value="Namanya" style="color: black">
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Back</button>
-                    <button type="button" class="btn btn-success" onclick="updateSliderName()">Edit</button>
+                    <button type="button" class="btn btn-success" onclick="deleteSlide(1)">Edit</button>
                 </div>
             </div>
         </div>

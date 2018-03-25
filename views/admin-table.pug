@@ -45,16 +45,17 @@ html(lang='en')
                                             th(scope='col') Action
                                     tbody
                                         - var index = 1
-                                        for content in playlist.content
-                                            tr
-                                                th(scope='row') #{index}
-                                                td #{content.slider_name}
-                                                td
-                                                    a.editor_edit(href='/view/edit_slider?id=' + content.slider_id)
-                                                        i.material-icons mode_edit
-                                                    a(onclick='confirmDeleteSlide(' + content.slider_id + ')', style='cursor: pointer;')
-                                                        i.material-icons.text-danger delete
-                                            - index = index + 1
+                                        if playlist.content.length > 0
+                                            for content in playlist.content
+                                                tr
+                                                    th(scope='row') #{index}
+                                                    td #{content.slider_name}
+                                                    td
+                                                        a.editor_edit(href='/view/edit_slider?id=' + content.slider_id)
+                                                            i.material-icons mode_edit
+                                                        a(onclick='confirmDeleteSlide(' + content.slider_id + ')', style='cursor: pointer;')
+                                                            i.material-icons.text-danger delete
+                                                - index = index + 1
                                 div
                                     button.btn.btn-primary(style='float: right;') Add Slide
 

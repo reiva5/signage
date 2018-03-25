@@ -2,8 +2,19 @@ var express = require("express");
 var router = express.Router();
 var Slider = require("./slider");
 
-router.get("/index", function(req, res){
-    res.render("index")
+router.get("/", function(req, res){
+    var slider = new Slider();
+    slider.getAllSlider().then(result => {
+        var array_slider = [];
+        result.forEach(element =>{
+            array_slider.push({
+                slider_name : element.slider_name,
+                slider_content : element.slider_content
+            });
+        });
+        slider.destroy();
+        res.render("index", {sliders: array_slider});
+    });
 });
 
 router.get("/admin_dashboard", function(req, res){
@@ -60,6 +71,7 @@ router.get("/admin", function(req, res) {
 router.get("/edit_slider", function(req, res){
     var slider = new Slider();
     slider.getSlider(req.query.id).then(result => {
+        slider.destroy();
         if (result != null){
             res.render("edit_slider", {slider : result});
         } else {

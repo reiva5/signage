@@ -4,7 +4,7 @@ var Slider = require("./slider");
 
 router.get("/get", function(req, res){
     var slider = new Slider();
-    slider.getSlider(req.query.slider_id).then(result => {
+    slider.getSlider(req.body.slider_id).then(result => {
         if (result) {
             res.json({
                 slider_id : result.slider_id,
@@ -21,7 +21,7 @@ router.get("/get", function(req, res){
 
 router.get("/get_by_playlist", function(req, res){
     var slider = new Slider();
-    slider.getSliderByPlaylist(req.query.playlist_id).then(result => {
+    slider.getSliderByPlaylist(req.body.playlist_id).then(result => {
         var array_slider = [];
         result.forEach(element => {
             array_slider.push({
@@ -53,7 +53,7 @@ router.get("/get_all",function(req,res){
 });
 router.post("/insert",function(req,res){
     var slider = new Slider();
-    slider.addSlider(req.query.playlist_id,req.query.slider_name,req.query.slider_content).then(result=>{
+    slider.addSlider(req.body.playlist_id,req.body.slider_name,req.body.slider_content).then(result=>{
         if(result.affectedRows > 0){
             res.json({
                 status : "success",
@@ -67,7 +67,7 @@ router.post("/insert",function(req,res){
 });
 router.post("/update_name",function(req,res){
     var slider = new Slider();
-    slider.editSliderName(req.query.slider_id,req.query.slider_name).then(result=>{
+    slider.editSliderName(req.body.slider_id,req.body.slider_name).then(result=>{
         if(result.affectedRows > 0){
             res.json({status: "success"});
         } else {
@@ -78,7 +78,7 @@ router.post("/update_name",function(req,res){
 });
 router.post("/update_playlist",function(req,res){
     var slider = new Slider();
-    slider.editSliderPlaylistID(req.query.slider_id,req.query.playlist_id).then(result=>{
+    slider.editSliderPlaylistID(req.body.slider_id,req.body.playlist_id).then(result=>{
         if(result.affectedRows > 0){
             res.json({status: "success"});
         } else {
@@ -89,7 +89,7 @@ router.post("/update_playlist",function(req,res){
 });
 router.post("/update_content",function(req,res){
     var slider = new Slider();
-    slider.editSliderContent(req.query.slider_id,req.query.slider_content).then(result=>{
+    slider.editSliderContent(req.body.slider_id,req.body.slider_content).then(result=>{
         if(result.affectedRows > 0){
             res.json({status: "success"});
         } else {
@@ -100,7 +100,7 @@ router.post("/update_content",function(req,res){
 });
 router.post("/delete",function(req,res){
     var slider = new Slider();
-    slider.deleteSlider(req.query.slider_id).then(result=>{
+    slider.deleteSlider(req.body.slider_id).then(result=>{
         if(result.affectedRows > 0){
             res.json({status: "success"});
         } else {
@@ -112,9 +112,9 @@ router.post("/delete",function(req,res){
 
 router.post("/add", function(req, res){
     var slider = new Slider();
-    var playlist_id = req.query.playlist_id;
-    var slider_name = req.query.slider_name;
-    var slider_content = req.query.slider_content;
+    var playlist_id = req.body.playlist_id;
+    var slider_name = req.body.slider_name;
+    var slider_content = req.body.slider_content;
     slider.addSlider(playlist_id, slider_name, slider_content).then(result => {
         if(result.affectedRows > 0){
             res.json({ status: "success"});

@@ -1,0 +1,151 @@
+doctype html
+html(lang='en')
+	meta(charset='utf-8')
+	meta(name='viewport', content='width=device-width, initial-scale=1, shrink-to-fit=no')
+	link(rel='stylesheet', href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons')
+	link(rel='stylesheet', href='https://unpkg.com/bootstrap-material-design@4.0.0-beta.4/dist/css/bootstrap-material-design.min.css', integrity='sha384-R80DC0KVBO4GSTw+wZ5x2zn2pu4POSErBkf8/fSFhPXHxvHJydT0CSgAP2Yo2r4I', crossorigin='anonymous')
+	link(rel='stylesheet', href='/assets/css/element.css')
+	title Slider List
+	body
+		nav.navbar.navbar-expand-lg.navbar-light.bg-light
+			button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarNav', aria-controls='navbarNav', aria-expanded='false', aria-label='Toggle navigation')
+				span.navbar-toggler-icon
+			#navbarNav.collapse.navbar-collapse
+				ul.navbar-nav.ml-auto
+					li.nav-item.my-3
+						| Account
+					li.navbar-item.btn-group
+						button#dropdownUserMenuButton.btn.bmd-btn-icon.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
+							i.material-icons 
+						.dropdown-menu.dropdown-menu-right(aria-labelledby='dropdownUserMenuButton')
+							a.dropdown-item(type='text', href='admin.html') Logout
+		h3.mt-3.text-center Slider List
+		.container.mt-4
+			.mr-auto.ml-auto
+				.card
+					#head_1.card-header
+						.row
+							h5.col-6 Profil
+							.col-6
+								button.btn.btn-primary(style='float: right;', data-toggle='collapse', data-target='#collapse_1', aria-expanded='false', aria-controls='collapse_1')
+									i.material-icons expand_more
+								button.btn.btn-primary(style='float: right', onclick='editSlide()')
+									i.material-icons mode_edit
+								label.switch(style='float: right;')
+									input(type='checkbox')
+									span.slider.round
+					#collapse_1.collapse(aria-labelledby='head_1')
+						.card-body
+							table.table
+								thead.thead-dark
+									tr
+										th(scope='col') No
+										th(scope='col') Name
+										th(scope='col') Action
+								tbody
+									tr
+										th(scope='row') 1
+										td Profil STEI
+										td
+											a.editor_edit(href='ckeditor/samples/edit.html')
+												i.material-icons mode_edit
+											a(onclick='confirmDelete()', style='cursor: pointer;')
+												i.material-icons.text-danger delete
+									tr
+										th(scope='row') 2
+										td Profil IF
+										td
+											a.editor_edit(href='ckeditor/samples/edit.html')
+												i.material-icons mode_edit
+											a(onclick='confirmDelete()', style='cursor: pointer;')
+												i.material-icons.text-danger delete
+							div
+								button.btn.btn-primary(style='float: right;') Add Slide
+					.card
+						#head_2.card-header
+							.row
+								h5.col-6 Dosen
+								.col-6
+									button.btn.btn-primary(style='float: right;', data-toggle='collapse', data-target='#collapse_2', aria-expanded='false', aria-controls='collapse_2')
+										i.material-icons expand_more
+									button.btn.btn-primary(style='float: right', onclick='editSlide()')
+										i.material-icons mode_edit
+									label.switch(style='float: right;')
+										input(type='checkbox')
+										span.slider.round
+						#collapse_2.collapse(aria-labelledby='head_2')
+							.card-body
+								table.table
+									thead.thead-dark
+										tr
+											th(scope='col') No
+											th(scope='col') Name
+											th(scope='col') Action
+									tbody
+										tr
+											th(scope='row') 1
+											td Bapak Dosen IF
+											td
+												a.editor_edit(href='ckeditor/samples/edit.html')
+													i.material-icons mode_edit
+												a(onclick='confirmDelete()', style='cursor: pointer;')
+													i.material-icons.text-danger delete
+										tr
+											th(scope='row') 2
+											td Bapak Dosen STI
+											td
+												a.editor_edit(href='ckeditor/samples/edit.html')
+													i.material-icons mode_edit
+												a(onclick='confirmDelete()', style='cursor: pointer;')
+													i.material-icons.text-danger delete
+								div
+									button.btn.btn-primary(style='float: right;') Add Slide
+						.text-center.mt-2
+							button.btn.btn-lg.btn-primary(onclick='addPlaylist()') Add PLaylist
+		// Delete Modal
+		#deleteSlideModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='deleteSlideModalLabel', aria-hidden='true')
+			.modal-dialog(role='document')
+				.modal-content
+					.modal-header
+						h5#deleteSlideModalLabel.modal-title Delete Slide
+						button.close(type='button', data-dismiss='modal', aria-label='Close')
+							span(aria-hidden='true') ×
+					.modal-body
+						| Are you sure want to delete this modal?
+					.modal-footer
+						button.btn.btn-secondary(type='button', data-dismiss='modal') Back
+						button.btn.btn-danger(type='button') Delete
+		// Edit Modal
+		#editSlideModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='editSlideModalLabel', aria-hidden='true')
+			.modal-dialog(role='document')
+				.modal-content
+					.modal-header
+						h5#editSlideModalLabel.modal-title Edit Slide
+						button.close(type='button', data-dismiss='modal', aria-label='Close')
+							span(aria-hidden='true') ×
+					.modal-body
+						.form-group
+							label(for='name') Slide Name
+							input#name.form-control(type='text', name='name', value='Namanya', style='color: black')
+					.modal-footer
+						button.btn.btn-secondary(type='button', data-dismiss='modal') Back
+						button.btn.btn-success(type='button') Edit
+		// Add Modal
+		#addPlaylistModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='addPlaylistModalLabel', aria-hidden='true')
+			.modal-dialog(role='document')
+				.modal-content
+					.modal-header
+						h5#addPlaylistModalLabel.modal-title Add Playlist
+						button.close(type='button', data-dismiss='modal', aria-label='Close')
+							span(aria-hidden='true') ×
+					.modal-body
+						.form-group
+							label(for='name') Playlist Name
+							input#name.form-control(type='text', name='name', value='Namanya', style='color: black')
+					.modal-footer
+						button.btn.btn-secondary(type='button', data-dismiss='modal') Back
+						button.btn.btn-success(type='button') Add
+		script(src='https://code.jquery.com/jquery-3.2.1.slim.min.js', integrity='sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN', crossorigin='anonymous')
+		script(src='https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js', integrity='sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U', crossorigin='anonymous')
+		script(src='https://unpkg.com/bootstrap-material-design@4.0.0-beta.4/dist/js/bootstrap-material-design.js', integrity='sha384-3xciOSDAlaXneEmyOo0ME/2grfpqzhhTcM4cE32Ce9+8DW/04AGoTACzQpphYGYe', crossorigin='anonymous')
+		script(src='/assets/js/admin-table.js')

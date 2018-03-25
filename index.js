@@ -1,16 +1,11 @@
 var express = require('express');
 var session = require('express-session');
 var app = express();
-<<<<<<< HEAD
 var Slider = require('./node_class/slider_router');
 var Playlist = require('./node_class/playlist_router');
 var User = require('./node_class/playlist_router');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-=======
-var Slider = require("./node_class/slider_router");
-var Playlist = require("./node_class/playlist_router");
->>>>>>> edit-delete
 
 app.set('views', __dirname + '/views');
 app.set("view engine", "pug")

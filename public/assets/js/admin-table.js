@@ -23,7 +23,6 @@ function addPlaylist(){
     $('#addPlaylistModal').modal('show');
 }
 
-<<<<<<< HEAD
 function updatePlaylistName() {
     $.post("http://localhost:3000/playlist/update", {
         id : "1",
@@ -50,11 +49,3 @@ function addRow(user_id, username) {
     newRow.append(cols);
     $("table.dosen-list").append(newRow);
 }
-=======
-function deletePlaylist(id) {
-    $.ajax("demo_test.asp")
-        .done(function () {
-            alert("success");
-        });
-}
->>>>>>> edit-delete

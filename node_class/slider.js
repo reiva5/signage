@@ -111,7 +111,7 @@ method.deleteSlider= function (id) {
 method.getAllSlider = function(){
     var conn = db.getConnection();
     return new Promise( (resolve, reject) =>{
-        conn.query("SELECT * FROM `slider_content`", function(err, result, field){
+        conn.query("SELECT * FROM `slider_playlist` JOIN `slider_content` ON `slider_playlist`.`id` = `slider_content`.`playlist_id` ORDER BY `playlist_id`", function(err, result, field){
             if(err)
                 reject(err);
             resolve(result);

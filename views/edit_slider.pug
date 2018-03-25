@@ -1,0 +1,32 @@
+doctype html
+html
+    head
+        meta(charset='utf-8')
+        title Edit Slider Content
+        script(src='/ckeditor/ckeditor.js')
+        script(src='//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js')
+        script(src='/ckeditor/samples/js/sample.js')
+        link(rel='stylesheet', href='/ckeditor/samples/css/samples.css')
+        link(rel='stylesheet', href='/ckeditor/samples/toolbarconfigurator/lib/codemirror/neo.css')
+    body#main
+        .adjoined-top
+            .grid-container
+                .content.grid-width-100
+                    h1 Edit Slider
+                    .row
+                    .form-group.col-8
+                        label(for='name') Name
+                        input#name.form-control(type='text', placeholder='Password', name='name', value= slider.slider_name, style='color: black')
+                    .row-4
+                        button(onclick="submit()") Save
+        .adjoined-bottom
+            .grid-container
+                .grid-width-100
+                    #editor
+                        div!= slider.slider_content
+
+        script.
+            $(document).ready(function() {
+            initSample();
+            });
+        script(src='/assets/js/edit-slider.js')

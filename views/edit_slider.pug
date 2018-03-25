@@ -1,0 +1,28 @@
+doctype html
+html
+    head
+        meta(charset='utf-8')
+        title Edit Slider Content
+        script(src='/ckeditor/ckeditor.js')
+        script(src='//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js')
+        script(src='/ckeditor/samples/js/sample.js')
+        link(rel='stylesheet', href='/ckeditor/samples/css/samples.css')
+        link(rel='stylesheet', href='/ckeditor/samples/toolbarconfigurator/lib/codemirror/neo.css')
+    body#main
+        .adjoined-top
+            .grid-container
+                .content.grid-width-100
+                    h1 Edit
+                    .form-group
+                        label(for='name') Name
+                        input#name.form-control(type='text', placeholder='Password', name='name', value='Namanya', style='color: black')
+        .adjoined-bottom
+            .grid-container
+                .grid-width-100
+                    #editor
+                        h1 Hello world!
+                        p I'm SIGNAGE
+        script.
+            $(document).ready(function() {
+            initSample();
+            });

@@ -50,7 +50,7 @@ html(lang='en')
                                                 th(scope='row') #{index}
                                                 td #{content.slider_name}
                                                 td
-                                                    a.editor_edit(href='ckeditor/samples/edit.html')
+                                                    a.editor_edit(href='/view/edit_slider?id=' + content.slider_id)
                                                         i.material-icons mode_edit
                                                     a(onclick='confirmDelete(' + content.slider_id + ')', style='cursor: pointer;')
                                                         i.material-icons.text-danger delete

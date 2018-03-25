@@ -28,7 +28,7 @@ function updatePlaylistName(playlistId) {
         "http://localhost:3000/playlist/update", 
         {
             id : playlistId,
-            name : $('#editPlaylistModal').find('input[name="name"]').val()
+            name : $('#editPlaylistModal').find('input[name="name"]')[0].value
         },
         function (data, status) {
             alert(JSON.stringify(data));
@@ -55,7 +55,7 @@ function updateSlideName(slideId) {
         "http://localhost:3000/slider/update_name", 
         {
             slider_id : slideId,
-            slider_name : "nama slide"//$('#editSlideModal').find('input[name="name"]').val()
+            slider_name : $('#editSlideModal').find('input[name="name"]')[0].value
         },
         function (data, status) {
             alert(JSON.stringify(data));
@@ -70,7 +70,7 @@ function updateSlidePlaylistId(slideId) {
         "http://localhost:3000/slider/update_playlist", 
         {
             slider_id : slideId,
-            playlist_id : 5//$('#editSlideModal').find('input[name="name"]').val()
+            playlist_id : $('#editSlideModal').find('input[name="name"]')[0].value
         },
         function (data, status) {
             alert(JSON.stringify(data));
@@ -85,7 +85,7 @@ function updateSlideContent(slideId) {
         "http://localhost:3000/slider/update_content", 
         {
             slider_id : slideId,
-            slider_content : "Hoho"//$('#editSlideModal').find('input[name="name"]').val()
+            slider_content : $('#editSlideModal').find('input[name="name"]')[0].value
         },
         function (data, status) {
             alert(JSON.stringify(data));

@@ -41,19 +41,31 @@ router.get("/admin_dashboard", function(req, res){
                     content : playlist_array
                 });
             }
+            slider.destroy();
             res.render("admin-table", {playlists: array_slider});
         });
     } else {
-        res.redirect("/view/admin");
+        res.redirect("admin");
     } 
 });
 
 router.get("/admin", function(req, res) {
     if(req.session.time_login){
-        res.redirect("/view/admin_dashboard");
+        res.redirect("admin_dashboard");
     } else {
         res.render("admin");
     }
 });
+
+router.get("/edit_slider", function(req, res){
+    var slider = new Slider();
+    slider.getSlider(req.query.id).then(result => {
+        if (result != null){
+            res.render("edit_slider", {slider : result});
+        } else {
+            res.redirect("admin_dashboard");
+        }
+    });
+})
 
 module.exports = router;

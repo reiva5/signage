@@ -12,16 +12,15 @@ html
         .adjoined-top
             .grid-container
                 .content.grid-width-100
-                    h1 Edit
+                    h1 Edit Slider
                     .form-group
                         label(for='name') Name
-                        input#name.form-control(type='text', placeholder='Password', name='name', value='Namanya', style='color: black')
+                        input#name.form-control(type='text', placeholder='Password', name='name', value= slider.slider_name, style='color: black')
         .adjoined-bottom
             .grid-container
                 .grid-width-100
                     #editor
-                        h1 Hello world!
-                        p I'm SIGNAGE
+                        p #{slider.slider_content}
         script.
             $(document).ready(function() {
             initSample();

@@ -23,6 +23,24 @@ function addPlaylist(){
     $('#addPlaylistModal').modal('show');
 }
 
+function submitAddPlaylist(){
+    console.log($('#addPlaylistModal').find('input[name="name"]')[0].value);
+    $.post(
+        "http://localhost:3000/playlist/insert",
+        {
+            name : $('#addPlaylistModal').find('input[name="name"]')[0].value
+        },
+        function(data, status){
+            console.log(data);
+            if(data.status == "success"){
+                location.reload();
+            } else {
+                alert(data);
+            }
+        }
+    )
+};
+
 function updatePlaylistName(playlistId) {
     $.post(
         "http://localhost:3000/playlist/update", 

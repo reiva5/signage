@@ -98,8 +98,8 @@ function submitEditPlaylist(){
     );
 }
 
-function addSlide() {
-    window.location = "/view/add_slider";
+function addSlide(id) {
+    window.location = "/view/add_slider?id=" + id;
 }
 
 

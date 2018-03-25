@@ -59,7 +59,7 @@ html(lang='en')
                                                             i.material-icons.text-danger delete
                                                 - index = index + 1
                                 div
-                                    button.btn.btn-primary(style='float: right;' onclick="addSlide()") Add Slide
+                                    button.btn.btn-primary(style='float: right;' onclick="addSlide(" + playlist.playlist_id + ")") Add Slide
 
                 div.text-center.mt-2
                     button.btn.btn-lg.btn-primary(onclick='addPlaylist()') Add Playlist

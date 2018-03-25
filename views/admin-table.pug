@@ -24,18 +24,18 @@ html(lang='en')
             .mr-auto.ml-auto
                 for playlist in playlists
                     .card
-                        #head_1.card-header
+                        .card-header(id = "head_" + playlist.playlist_id)
                             .row
-                                h5.col-6 Profil
+                                h5.col-6 #{playlist.playlist_name}
                                 .col-6
-                                    button.btn.btn-primary(style='float: right;', data-toggle='collapse', data-target='#collapse_1', aria-expanded='false', aria-controls='collapse_1')
+                                    button.btn.btn-primary(style='float: right;', data-toggle='collapse', data-target='#collapse_' + playlist.playlist_id, aria-expanded='false', aria-controls='collapse_' + playlist.playlist_id)
                                         i.material-icons expand_more
-                                    button.btn.btn-primary(style='float: right', onclick='editSlide()')
+                                    button.btn.btn-primary(style='float: right', onclick='editSlide(' + playlist.playlist_id + ')')
                                         i.material-icons mode_edit
                                     label.switch(style='float: right;')
                                         input(type='checkbox')
                                         span.slider.round
-                        #collapse_1.collapse(aria-labelledby='head_1')
+                        .collapse(id='collapse_' + playlist.playlist_id ,aria-labelledby='head_' + playlist.playlist_id)
                             .card-body
                                 table.table
                                     thead.thead-dark
@@ -44,22 +44,17 @@ html(lang='en')
                                             th(scope='col') Name
                                             th(scope='col') Action
                                     tbody
-                                        tr
-                                            th(scope='row') 1
-                                            td Profil STEI
-                                            td
-                                                a.editor_edit(href='ckeditor/samples/edit.html')
-                                                    i.material-icons mode_edit
-                                                a(onclick='confirmDelete()', style='cursor: pointer;')
-                                                    i.material-icons.text-danger delete
-                                        tr
-                                            th(scope='row') 2
-                                            td Profil IF
-                                            td
-                                                a.editor_edit(href='ckeditor/samples/edit.html')
-                                                    i.material-icons mode_edit
-                                                a(onclick='confirmDelete()', style='cursor: pointer;')
-                                                    i.material-icons.text-danger delete
+                                        - var index = 1
+                                        for content in playlist.content
+                                            tr
+                                                th(scope='row') #{index}
+                                                td #{content.slider_name}
+                                                td
+                                                    a.editor_edit(href='ckeditor/samples/edit.html')
+                                                        i.material-icons mode_edit
+                                                    a(onclick='confirmDelete(' + content.slider_id + ')', style='cursor: pointer;')
+                                                        i.material-icons.text-danger delete
+                                            - index = index + 1
                                 div
                                     button.btn.btn-primary(style='float: right;') Add Slide
 
@@ -111,4 +106,4 @@ html(lang='en')
         script(src='https://code.jquery.com/jquery-3.2.1.slim.min.js', integrity='sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN', crossorigin='anonymous')
         script(src='https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js', integrity='sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U', crossorigin='anonymous')
         script(src='https://unpkg.com/bootstrap-material-design@4.0.0-beta.4/dist/js/bootstrap-material-design.js', integrity='sha384-3xciOSDAlaXneEmyOo0ME/2grfpqzhhTcM4cE32Ce9+8DW/04AGoTACzQpphYGYe', crossorigin='anonymous')
-        script(src='assets/js/admin-table.js')
+        script(src='/assets/js/admin-table.js')

@@ -30,6 +30,7 @@ app.post("/login", function(req, res){
 
 app.use("/slider", Slider);
 app.use("/view", View);
+app.use("/playlist", Playlist)
 
 app.listen(3000, function(){
     console.log("Apps started on port 3000");

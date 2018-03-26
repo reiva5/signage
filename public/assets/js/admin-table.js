@@ -1,54 +1,107 @@
+var active_playlist = null;
+var active_slider = null;
+
 $(document).ready(function() { 
     $('body').bootstrapMaterialDesign(); 
     
 });
 
-function confirmDeleteSlide(){
+function confirmDeleteSlide(id){
+    active_slider = id;
     $('#deleteSlideModal').modal('show');
 }
 
-function confirmDeletePlaylist(){
+function submitDeleteSlide(slideId) {
+    $.post(
+        "http://localhost:3000/slider/delete", 
+        {slider_id : active_slider},
+        function (data, status) {
+            if (data.status == "success"){
+                location.reload();
+            } else {
+                alert(data);
+            }
+            active_slider = null;
+        }
+    );
+}
+
+function confirmDeletePlaylist(id){
+    active_playlist = id;
     $('#deletePlaylistModal').modal('show');
+}
+
+function submitDeletePlaylist() {
+    $.post(
+        "http://localhost:3000/playlist/delete", 
+        {id : active_playlist},
+        function (data, status) {
+            console.log(data);
+            if(data.status == "success"){
+                location.reload();
+            } else {
+                alert(data);
+            }
+            active_playlist = null;
+        }
+    );
 }
 
 function confirmEditSlide(){
     $('#editSlideModal').modal('show');
 }
 
-function confirmEditPlaylist(){
-    $('#editPlaylistModal').modal('show');
-}
 
 function addPlaylist(){
     $('#addPlaylistModal').modal('show');
 }
 
-function updatePlaylistName(playlistId) {
+function submitAddPlaylist(){
+    console.log($('#addPlaylistModal').find('input[name="name"]')[0].value);
+    $.post(
+        "http://localhost:3000/playlist/insert",
+        {
+            name : $('#addPlaylistModal').find('input[name="name"]')[0].value
+        },
+        function(data, status){
+            console.log(data);
+            if(data.status == "success"){
+                location.reload();
+            } else {
+                alert(data);
+            }
+        }
+    )
+};
+
+function editPlaylist(id, name){
+    active_playlist = id;
+    $('#editPlaylistModal').find('input[name="name"]')[0].value = name;
+    $('#editPlaylistModal').modal('show');
+}
+
+function submitEditPlaylist(){
     $.post(
         "http://localhost:3000/playlist/update", 
         {
-            id : playlistId,
+            id : active_playlist,
             name : $('#editPlaylistModal').find('input[name="name"]')[0].value
         },
         function (data, status) {
-            alert(JSON.stringify(data));
-            alert(status);
+            if(data.status == "success"){
+                location.reload();
+            } else {
+                alert(data);
+            }
+            active_playlist = null;
         }
     );
-    location.reload();
 }
 
-function deletePlaylist(playlistId) {
-    $.post(
-        "http://localhost:3000/playlist/delete", 
-        {id : playlistId},
-        function (data, status) {
-            alert(JSON.stringify(data));
-            alert(status);
-        }
-    );
-    location.reload();
+function addSlide(id) {
+    window.location = "/view/add_slider?id=" + id;
 }
+
 
 function updateSlideName(slideId) {
     $.post(
@@ -87,18 +140,6 @@ function updateSlideContent(slideId) {
             slider_id : slideId,
             slider_content : $('#editSlideModal').find('input[name="name"]')[0].value
         },
-        function (data, status) {
-            alert(JSON.stringify(data));
-            alert(status);
-        }
-    );
-    location.reload();
-}
-
-function deleteSlide(slideId) {
-    $.post(
-        "http://localhost:3000/slider/delete", 
-        {slider_id : slideId},
         function (data, status) {
             alert(JSON.stringify(data));
             alert(status);

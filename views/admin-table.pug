@@ -30,7 +30,9 @@ html(lang='en')
                                 .col-6
                                     button.btn.btn-primary(style='float: right;', data-toggle='collapse', data-target='#collapse_' + playlist.playlist_id, aria-expanded='false', aria-controls='collapse_' + playlist.playlist_id)
                                         i.material-icons expand_more
-                                    button.btn.btn-primary(style='float: right', onclick='editSlide(' + playlist.playlist_id + ')')
+                                    button.btn.btn-danger(style='float: right', onclick='confirmDeletePlaylist(' + playlist.playlist_id + ')')
+                                        i.material-icons delete
+                                    button.btn.btn-primary(style='float: right', onclick='editPlaylist(' + playlist.playlist_id +',"' + playlist.playlist_name +  '")')
                                         i.material-icons mode_edit
                                     label.switch(style='float: right;')
                                         input(type='checkbox')
@@ -45,22 +47,23 @@ html(lang='en')
                                             th(scope='col') Action
                                     tbody
                                         - var index = 1
-                                        for content in playlist.content
-                                            tr
-                                                th(scope='row') #{index}
-                                                td #{content.slider_name}
-                                                td
-                                                    a.editor_edit(href='/view/edit_slider?id=' + content.slider_id)
-                                                        i.material-icons mode_edit
-                                                    a(onclick='confirmDelete(' + content.slider_id + ')', style='cursor: pointer;')
-                                                        i.material-icons.text-danger delete
-                                            - index = index + 1
+                                        if playlist.content.length > 0
+                                            for content in playlist.content
+                                                tr
+                                                    th(scope='row') #{index}
+                                                    td #{content.slider_name}
+                                                    td
+                                                        a.editor_edit(href='/view/edit_slider?id=' + content.slider_id)
+                                                            i.material-icons mode_edit
+                                                        a(onclick='confirmDeleteSlide(' + content.slider_id + ')', style='cursor: pointer;')
+                                                            i.material-icons.text-danger delete
+                                                - index = index + 1
                                 div
-                                    button.btn.btn-primary(style='float: right;') Add Slide
+                                    button.btn.btn-primary(style='float: right;' onclick="addSlide(" + playlist.playlist_id + ")") Add Slide
 
                 div.text-center.mt-2
-                    button.btn.btn-lg.btn-primary(onclick='addPlaylist()') Add PLaylist
-        // Delete Modal
+                    button.btn.btn-lg.btn-primary(onclick='addPlaylist()') Add Playlist
+        // Delete Slide Modal
         #deleteSlideModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='deleteSlideModalLabel', aria-hidden='true')
             .modal-dialog(role='document')
                 .modal-content
@@ -69,16 +72,29 @@ html(lang='en')
                         button.close(type='button', data-dismiss='modal', aria-label='Close')
                             span(aria-hidden='true') ×
                     .modal-body
-                        | Are you sure want to delete this modal?
+                        | Are you sure want to delete this slide?
                     .modal-footer
                         button.btn.btn-secondary(type='button', data-dismiss='modal') Back
-                        button.btn.btn-danger(type='button') Delete
-        // Edit Modal
-        #editSlideModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='editSlideModalLabel', aria-hidden='true')
+                        button.btn.btn-danger(type='button' onclick="submitDeleteSlide()") Delete
+        // Delete Playlist Modal
+        #deletePlaylistModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='deletePlaylistModalLabel', aria-hidden='true')
             .modal-dialog(role='document')
                 .modal-content
                     .modal-header
-                        h5#editSlideModalLabel.modal-title Edit Slide
+                        h5#deletePlaylistModalLabel.modal-title Delete Playlist
+                        button.close(type='button', data-dismiss='modal', aria-label='Close')
+                            span(aria-hidden='true') ×
+                    .modal-body
+                        | Are you sure want to delete this playlist?
+                    .modal-footer
+                        button.btn.btn-secondary(type='button', data-dismiss='modal') Back
+                        button.btn.btn-danger(type='button' onclick="submitDeletePlaylist()") Delete
+        // Edit Modal
+        #editPlaylistModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='editSlideModalLabel', aria-hidden='true')
+            .modal-dialog(role='document')
+                .modal-content
+                    .modal-header
+                        h5#editSlideModalLabel.modal-title Edit Playlist
                         button.close(type='button', data-dismiss='modal', aria-label='Close')
                             span(aria-hidden='true') ×
                     .modal-body
@@ -87,7 +103,7 @@ html(lang='en')
                             input#name.form-control(type='text', name='name', value='Namanya', style='color: black')
                     .modal-footer
                         button.btn.btn-secondary(type='button', data-dismiss='modal') Back
-                        button.btn.btn-success(type='button') Edit
+                        button.btn.btn-success(type='button', onclick="submitEditPlaylist()") Edit
         // Add Modal
         #addPlaylistModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='addPlaylistModalLabel', aria-hidden='true')
             .modal-dialog(role='document')
@@ -99,11 +115,11 @@ html(lang='en')
                     .modal-body
                         .form-group
                             label(for='name') Playlist Name
-                            input#name.form-control(type='text', name='name', value='Namanya', style='color: black')
+                            input#name.form-control(type='text', name='name', placeholder="Playlist Name...", style='color: black')
                     .modal-footer
                         button.btn.btn-secondary(type='button', data-dismiss='modal') Back
-                        button.btn.btn-success(type='button') Add
-        script(src='https://code.jquery.com/jquery-3.2.1.slim.min.js', integrity='sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN', crossorigin='anonymous')
+                        button.btn.btn-success(type='button', onclick= "submitAddPlaylist()") Add
+        script(src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous")
         script(src='https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js', integrity='sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U', crossorigin='anonymous')
         script(src='https://unpkg.com/bootstrap-material-design@4.0.0-beta.4/dist/js/bootstrap-material-design.js', integrity='sha384-3xciOSDAlaXneEmyOo0ME/2grfpqzhhTcM4cE32Ce9+8DW/04AGoTACzQpphYGYe', crossorigin='anonymous')
         script(src='/assets/js/admin-table.js')

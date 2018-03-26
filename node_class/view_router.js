@@ -7,10 +7,12 @@ router.get("/", function(req, res){
     slider.getAllSlider().then(result => {
         var array_slider = [];
         result.forEach(element =>{
-            array_slider.push({
-                slider_name : element.slider_name,
-                slider_content : element.slider_content
-            });
+            if (element.slider_id != null){
+                array_slider.push({
+                    slider_name : element.slider_name,
+                    slider_content : element.slider_content
+                });
+            }
         });
         slider.destroy();
         res.render("index", {sliders: array_slider});

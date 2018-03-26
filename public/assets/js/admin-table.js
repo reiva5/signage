@@ -13,7 +13,7 @@ function confirmDeleteSlide(id){
 
 function submitDeleteSlide(slideId) {
     $.post(
-        "http://localhost:3000/slider/delete", 
+        "/slider/delete", 
         {slider_id : active_slider},
         function (data, status) {
             if (data.status == "success"){
@@ -33,7 +33,7 @@ function confirmDeletePlaylist(id){
 
 function submitDeletePlaylist() {
     $.post(
-        "http://localhost:3000/playlist/delete", 
+        "/playlist/delete", 
         {id : active_playlist},
         function (data, status) {
             console.log(data);
@@ -59,7 +59,7 @@ function addPlaylist(){
 function submitAddPlaylist(){
     console.log($('#addPlaylistModal').find('input[name="name"]')[0].value);
     $.post(
-        "http://localhost:3000/playlist/insert",
+        "/playlist/insert",
         {
             name : $('#addPlaylistModal').find('input[name="name"]')[0].value
         },
@@ -82,7 +82,7 @@ function editPlaylist(id, name){
 
 function submitEditPlaylist(){
     $.post(
-        "http://localhost:3000/playlist/update", 
+        "/playlist/update", 
         {
             id : active_playlist,
             name : $('#editPlaylistModal').find('input[name="name"]')[0].value
@@ -105,7 +105,7 @@ function addSlide(id) {
 
 function updateSlideName(slideId) {
     $.post(
-        "http://localhost:3000/slider/update_name", 
+        "/slider/update_name", 
         {
             slider_id : slideId,
             slider_name : $('#editSlideModal').find('input[name="name"]')[0].value
@@ -120,7 +120,7 @@ function updateSlideName(slideId) {
 
 function updateSlidePlaylistId(slideId) {
     $.post(
-        "http://localhost:3000/slider/update_playlist", 
+        "/slider/update_playlist", 
         {
             slider_id : slideId,
             playlist_id : $('#editSlideModal').find('input[name="name"]')[0].value
@@ -135,7 +135,7 @@ function updateSlidePlaylistId(slideId) {
 
 function updateSlideContent(slideId) {
     $.post(
-        "http://localhost:3000/slider/update_content", 
+        "/slider/update_content", 
         {
             slider_id : slideId,
             slider_content : $('#editSlideModal').find('input[name="name"]')[0].value

@@ -1,6 +1,8 @@
 var express = require('express');
 var session = require('express-session');
 var app = express();
+var Artyom = require('./node_modules/artyom.js/build/artyom.window');
+
 
 var Slider = require('./node_class/slider_router');
 var Playlist = require('./node_class/playlist_router');
@@ -21,7 +23,6 @@ app.use(express.static('public'));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-
 app.post("/login", function(req, res){
     var sess = req.session;
     sess.time_login = Date.now();

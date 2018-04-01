@@ -133,7 +133,9 @@
                         </div>
                     </div>
                     <div class="text-center mt-2">
-                        <button class="btn btn-lg btn-primary" onclick="addPlaylist()">Add PLaylist</button>
+                        <input class="form-control" type="text" id="command" name="name" value="Namanya" style="color: black">
+                        <button id = "button-start" class="btn btn-lg btn-primary" onclick="say()">Start </button>
+                        <button id = "button-stop" class="btn btn-lg btn-primary">Stop </button>                        
                     </div>
                 </div>
             </div>
@@ -233,5 +235,95 @@
     <script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js" integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/bootstrap-material-design@4.0.0-beta.4/dist/js/bootstrap-material-design.js" integrity="sha384-3xciOSDAlaXneEmyOo0ME/2grfpqzhhTcM4cE32Ce9+8DW/04AGoTACzQpphYGYe" crossorigin="anonymous"></script>
     <script src="assets/js/admin-table.js"></script>
+    <script src="../node_modules/artyom.js/build/artyom.window.js"></script>
+    <script>
+
+$(document).ready(function() { 
+    navigator.mediaDevices.getUserMedia({ audio: true })
+        .then(function(stream) {
+        console.log('You let me use your mic!')
+    });
+});
+
+var artyom = new Artyom();
+
+// artyom.addCommands([
+// {
+//     smart : "true",
+//     indexes: ["Say *"],
+//     action: function(i, wildcard){
+//         artyom.say(wildcard);
+//     }
+// }
+// ]);
+
+// artyom.initialize({
+//     lang:"en-GB",
+//     debug:true,
+//     continuous:false,
+//     listen:true,
+//     soundex : true
+// }).then(function(){
+//     console.log("Artyom has been correctly initialized");
+//     console.log("The following array shouldn't be empty" , artyom.getVoices());
+// }).catch(function(){
+//     console.error("An error occurred during the initialization");
+// });
+
+// artyom.fatality();
+
+// console.log(artyom.isObeying());
+// if (artyom.isRecognizing()){
+//     console.log("Artyom is listening to your commands");
+// }else{
+//     console.log("Artyom is not listening to you.");
+// }
+
+function say() {
+    // Redirect output
+    artyom.redirectRecognizedTextOutput((recognizedText, isFinal) => {
+        if(isFinal){
+            console.log(recognizedText);
+        }else{
+            console.warn(recognizedText);
+        }
+    });
+
+    // Start Artyom in english mode
+    artyom.initialize({
+        lang:"en-US",
+        continuous:false,
+        debug:true,
+        listen: true 
+    }).then(() => {
+        console.log("Artyom has been succesfully initialized");
+    }).catch(() => {
+        console.error("Something went wrong");
+    });
+}
+
+// var settings = {
+//     continuous:false, // Don't stop never because i have https connection
+//     onResult:function(text){
+//         // Show the Recognized text in the console
+//         console.log("Recognized text: ", text);
+//     },
+//     onStart:function(){
+//         console.log("Dictation started by the user");
+//     },
+//     onEnd:function(){
+//         alert("Dictation stopped by the user");
+//     }
+// };
+
+// var UserDictation = artyom.newDictation(settings);
+
+
+$("#button-stop").click(function(){
+    // Stop the Dictation
+    UserDictation.stop();
+});
+
+    </script>
   </body>
 </html>

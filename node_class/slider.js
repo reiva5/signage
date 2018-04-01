@@ -1,6 +1,7 @@
 var DB = require("./db");
 var Promise = require("promise");
 var db;
+var artyom;
 var method = Slider.prototype;
 function Slider(){
     this.slider_id = null;
@@ -53,6 +54,7 @@ method.getSliderByPlaylist =  function(playlist_id) {
 
 method.addSlider = function(playlist_id,slider_name,slider_content){
     var conn = db.getConnection();
+    saySomething();
     return new Promise( (resolve, reject) => {
         conn.query("INSERT INTO `slider_content`(`playlist_id`,`slider_name`,`slider_content`) VALUES ('" + playlist_id
             + "', '" + slider_name + "', '" + slider_content + "')", function(err, result, field) {

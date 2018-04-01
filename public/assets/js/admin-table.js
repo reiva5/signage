@@ -3,8 +3,8 @@ var active_slider = null;
 
 $(document).ready(function() { 
     $('body').bootstrapMaterialDesign(); 
-    
 });
+    
 
 function confirmDeleteSlide(id){
     active_slider = id;

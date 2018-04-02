@@ -74,4 +74,15 @@ router.post("/update", function(req, res){
         playlist.destroy();
     });
 });
+router.post("/update_active", function(req, res){
+    var playlist = new Playlist();
+    playlist.editPlaylistActive(req.body.id,req.body.active).then(result =>{
+        if(result.affectedRows > 0){
+            res.json({status: "success"});
+        } else {
+            res.json({status: "failed"});
+        }
+        playlist.destroy();
+    });
+});
 module.exports = router;

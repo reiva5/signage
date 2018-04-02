@@ -35,7 +35,10 @@ html(lang='en')
                                     button.btn.btn-primary(style='float: right', onclick='editPlaylist(' + playlist.playlist_id +',"' + playlist.playlist_name +  '")')
                                         i.material-icons mode_edit
                                     label.switch(style='float: right;')
-                                        input(type='checkbox')
+                                        if playlist.playlist_active == 1
+                                            input(type='checkbox', id = "set-active_" + playlist.playlist_id, checked='checked', onclick="setActive(this.id)")
+                                        else
+                                            input(type='checkbox', id = "set-active_" + playlist.playlist_id, onclick="setActive(this.id)")
                                         span.slider.round
                         .collapse(id='collapse_' + playlist.playlist_id ,aria-labelledby='head_' + playlist.playlist_id)
                             .card-body

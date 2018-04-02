@@ -19,11 +19,7 @@ html(lang='en')
 					- var index = 0;
 					for slider in sliders
 						div(class= index == 0 ? "carousel-item active" : "carousel-item")
-							img.d-block.w-100.h-100.mx-auto(src='/images/photokopi.jpeg', alt='First slide')
-							.container
-								.slider-content
-									h1 #{slider.slider_name}
-									!= slider.slider_content
+							!= slider.slider_content
 						- index += 1;
 				a.carousel-control-prev(href='#carouselExampleIndicators', role='button', data-slide='prev')
 					span.carousel-control-prev-icon(aria-hidden='true')

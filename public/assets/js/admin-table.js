@@ -147,3 +147,24 @@ function updateSlideContent(slideId) {
     );
     location.reload();
 }
+
+function setActive(inputId){
+    let playlist_id = inputId.split("_")[1];
+    let playlist_active = 0;
+    if($("#"+inputId).prop("checked")){
+        playlist_active = 1;
+    }
+    console.log(playlist_id);
+    console.log(playlist_active);
+    $.post(
+        "/playlist/update_active",
+        {
+            id : playlist_id,
+            active : playlist_active
+        },
+        function (data, status){
+            console.log(JSON.stringify(data));
+            console.log(status);
+        }
+    );
+}

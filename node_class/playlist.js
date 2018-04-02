@@ -59,7 +59,17 @@ method.editPlaylist = function (id, name) {
         });
     });
 }
-
+method.editPlaylistActive = function (id, active){
+    var conn = db.getConnection();
+    return new Promise( (resolve, reject) => {
+        conn.query("UPDATE `slider_playlist` SET `active` = " + active + " WHERE `id` = " + id, 
+            function (err, result, field){
+            if (err)
+                reject(err);
+            resolve(result);
+        });
+    });
+}
 method.deletePlaylist= function (id) {
     var conn = db.getConnection();
     return new Promise( (resolve, reject) => {

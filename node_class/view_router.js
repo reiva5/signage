@@ -4,7 +4,7 @@ var Slider = require("./slider");
 
 router.get("/", function(req, res){
     var slider = new Slider();
-    slider.getAllSlider().then(result => {
+    slider.getSliderbyActive().then(result => {
         var array_slider = [];
         result.forEach(element =>{
             if (element.slider_id != null){
@@ -14,6 +14,7 @@ router.get("/", function(req, res){
                 });
             }
         });
+        console.log(array_slider);
         slider.destroy();
         res.render("index", {sliders: array_slider});
     });

@@ -118,7 +118,16 @@ method.getAllSlider = function(){
         });
     });
 }
-
+method.getSliderbyActive = function(){
+    var conn = db.getConnection();
+    return new Promise( (resolve, reject) =>{
+        conn.query("SELECT * FROM `slider_playlist` LEFT OUTER JOIN `slider_content` ON `slider_playlist`.`id` = `slider_content`.`playlist_id` WHERE `active` = 1 ORDER BY `playlist_id`", function(err, result, field){
+            if(err)
+                reject(err);
+            resolve(result);
+        });
+    });
+}
 method.destroy = function(){
     db.disconnect();
 }

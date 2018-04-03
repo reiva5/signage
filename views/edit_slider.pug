@@ -6,6 +6,7 @@ html
         script(src='/ckeditor/ckeditor.js')
         script(src='//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js')
         script(src='/ckeditor/samples/js/sample.js')
+        link(rel='stylesheet', href='/assets/css/slider.css')
         link(rel='stylesheet', href='/ckeditor/samples/css/samples.css')
         link(rel='stylesheet', href='/ckeditor/samples/toolbarconfigurator/lib/codemirror/neo.css')
     body#main
@@ -17,17 +18,27 @@ html
                     else
                         h1 Edit Slider
                     .row
-                    .form-group.col-8
-                        label(for='name') Name
-                        input#name.form-control(type='text', placeholder='Slider Name', name='name', value= slider != null ? slider.slider_name : "", style='color: black')
-                    .row-4
-                        button(onclick= mode == "add" ? "add()" : "edit()") Save
+                        .form-group.col-8
+                            label(for='name') Name
+                            input#name.slider-name-form.form-control(type='text', placeholder='Slider Name', name='name', value= slider != null ? slider.slider_name : "", style='color: black')
+                    //- .row
+                    //-     .form-group.col-8.form-background
+                    //-         .col-2
+                    //-             label(for='backgroud') Background
+                    //-         .col-6
+                    //-             input#background.slider-background-form.form-control(type='text', placeholder='Background url', name='background', value= slider != null ? slider.slider_name : "", style='color: black')
+                    .col-4
+                        button.save-slider(onclick= mode == "add" ? "add()" : "edit()") Save
         .adjoined-bottom
             .grid-container
                 .grid-width-100
                     #editor
                         if slider != null
                             != slider.slider_content
+                        else
+                            img.content-background.d-block.w-100.h-100.mx-auto(src='/images/photokopi.jpeg', alt='First slide')
+                            .container
+                                .slider-content
 
         script.
             $(document).ready(function() {

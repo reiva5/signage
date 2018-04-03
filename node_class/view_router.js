@@ -4,7 +4,7 @@ var Slider = require("./slider");
 
 router.get("/", function(req, res){
     var slider = new Slider();
-    slider.getAllSlider().then(result => {
+    slider.getSliderbyActive().then(result => {
         var array_slider = [];
         result.forEach(element =>{
             if (element.slider_id != null){
@@ -14,6 +14,7 @@ router.get("/", function(req, res){
                 });
             }
         });
+        console.log(array_slider);
         slider.destroy();
         res.render("index", {sliders: array_slider});
     });
@@ -26,6 +27,7 @@ router.get("/admin_dashboard", function(req, res){
             var array_slider = [];
             var curr_playlist_id = 0;
             var curr_playlist_name = "";
+            var curr_playlist_active = 0;
             var playlist_array = []
             result.forEach(element => {
                 if (curr_playlist_id != element.id) {
@@ -33,11 +35,13 @@ router.get("/admin_dashboard", function(req, res){
                         array_slider.push({
                             playlist_id : curr_playlist_id,
                             playlist_name : curr_playlist_name,
+                            playlist_active : curr_playlist_active,
                             content : playlist_array
                         });
                     }
                     curr_playlist_id = element.id;
                     curr_playlist_name = element.name;
+                    curr_playlist_active = element.active;
                     playlist_array = []
                 }
                 if (element.playlist_id != null){
@@ -53,6 +57,7 @@ router.get("/admin_dashboard", function(req, res){
                 array_slider.push({
                     playlist_id : curr_playlist_id,
                     playlist_name : curr_playlist_name,
+                    playlist_active : curr_playlist_active,
                     content : playlist_array
                 });
             }

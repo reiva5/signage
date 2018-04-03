@@ -5,10 +5,11 @@ html(lang='en')
 		meta(name='viewport', content='width=device-width, initial-scale=1, shrink-to-fit=no')
 		meta(http-equiv='X-UA-Compatible', content='ie=edge')
 		title Slider
+		link(rel='stylesheet', href='/assets/css/slider.css')
 		link(rel='stylesheet', href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons')
 		link(rel='stylesheet', href='https://unpkg.com/bootstrap-material-design@4.0.0-beta.4/dist/css/bootstrap-material-design.min.css', integrity='sha384-R80DC0KVBO4GSTw+wZ5x2zn2pu4POSErBkf8/fSFhPXHxvHJydT0CSgAP2Yo2r4I', crossorigin='anonymous')
 	body
-		.container-fluid.bg-dark
+		.slider-container.bg-dark
 			#carouselExampleIndicators.carousel.slide(data-ride='carousel')
 				ol.carousel-indicators
 					li.active(data-target='#carouselExampleIndicators', data-slide-to='0')
@@ -18,11 +19,7 @@ html(lang='en')
 					- var index = 0;
 					for slider in sliders
 						div(class= index == 0 ? "carousel-item active" : "carousel-item")
-							img.d-block.w-75.mx-auto(src='/images/photokopi.jpeg', alt='First slide')
-							.container
-								.carousel-caption
-									h1 #{slider.slider_name}
-									!= slider.slider_content
+							!= slider.slider_content
 						- index += 1;
 				a.carousel-control-prev(href='#carouselExampleIndicators', role='button', data-slide='prev')
 					span.carousel-control-prev-icon(aria-hidden='true')

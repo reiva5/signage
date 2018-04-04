@@ -8,10 +8,21 @@ $(document).ready(function() {
     var last_chat = null;
     var time_now = null;
 
-	if (!('webkitSpeechRecognition' in window)) {
+    function speak(speechTool, text){
+        speechTool.text = 'Halo, ada yang bisa saya bantu?';
+        window.speechSynthesis.speak(speechTool);
+        speechTool.onend = function(){
+            document.getElementById("left-bubble").style.display = "none";
+        }
+    }
+
+	if (!('webkitSpeechRecognition' in window && 'speechSynthesis' in window)) {
 		alert('Recognition not supported!\n Please use Chrome version 25 or later');
 	} else {
-		var recognition = new webkitSpeechRecognition();
+        var recognition = new webkitSpeechRecognition();
+        var msg = new SpeechSynthesisUtterance();
+        msg.lang = "id-ID";
+        msg.volume = 1;
 		recognition.interimResults = true;
 		recognition.lang = 'id-ID';
 
@@ -29,16 +40,17 @@ $(document).ready(function() {
 		}
 
 		recognition.onspeechstart = function(){
-            console.log("speech start");
+            // console.log("speech start");
             time_now = new Date().getTime();
-			if (!bubble_active && active_chat && time_now - last_chat <= 60*100){
+			if (!bubble_active && active_chat && time_now - last_chat <= 60*1000){
+                document.getElementById("right-bubble-text").innerHTML = "";
 				document.getElementById("right-bubble").style.display = "block";
                 bubble_active = true;
 			}
 		}
 
 		recognition.onspeechend = function(){
-			console.log("speech end");
+			// console.log("speech end");
 			if (bubble_active){
                 document.getElementById("right-bubble-text").innerHTML = "";
 				document.getElementById("right-bubble").style.display = "none";
@@ -50,7 +62,7 @@ $(document).ready(function() {
 
 		recognition.onresult = function(event){
             interim_transcript = "";
-            if (last_chat == null || time_now - last_chat > 60*100){
+            if (last_chat == null || time_now - last_chat > 60*1000){
                 for (var i = event.resultIndex; i < event.results.length; ++i) {
                     // console.log("masuk");
                     if (event.results[i].isFinal) {
@@ -61,10 +73,11 @@ $(document).ready(function() {
                             last_chat = time_now;
                             document.getElementById("left-bubble-text").innerHTML = "Halo, ada yang bisa saya bantu?";
                             document.getElementById("left-bubble").style.display = "block";
+                            speak(msg, "Halo, ada yang bisa saya bantu?");
                         }
                     }
                 }
-            } else if (active_chat && time_now - last_chat <= 60*100) {
+            } else if (active_chat && time_now - last_chat <= 60*1000) {
                 for (var i = event.resultIndex; i < event.results.length; ++i) {
                     // console.log("active");
                     if (event.results[i].isFinal) {
@@ -79,9 +92,9 @@ $(document).ready(function() {
                 }
                 last_chat = time_now;
             }
-            console.log(active_chat);
+            // console.log(active_chat);
 		}
 		recognition.start();
-		console.log('start');
+		// console.log('start');
 	}
 });

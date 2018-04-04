@@ -21,9 +21,7 @@ $(document).ready(function() {
 		}
 
 		recognition.onend = function(){
-			final_transcript = "";
-			interim_transcript = "";
-			console.log("recognition end");
+            console.log("recognition end");
 			recognition.start();
 		}
 
@@ -40,7 +38,9 @@ $(document).ready(function() {
 			if (bubble_active){
                 document.getElementById("right-bubble-text").innerHTML = "";
 				document.getElementById("right-bubble").style.display = "none";
-				bubble_active = false;
+                bubble_active = false;
+                final_transcript = "";
+			    interim_transcript = "";
 			}	
 		}
 
@@ -51,7 +51,6 @@ $(document).ready(function() {
 		        	final_transcript += event.results[i][0].transcript;
                     document.getElementById("right-bubble-text").innerHTML = final_transcript;
                     console.log(final_transcript);
-                    final_transcript = ""; 	
 		      	} else {
 		        	interim_transcript += event.results[i][0].transcript;
                     document.getElementById("right-bubble-text").innerHTML = interim_transcript;

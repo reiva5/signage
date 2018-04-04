@@ -28,6 +28,11 @@ app.post("/login", function(req, res){
     res.redirect("/view/admin_dashboard");
 });
 
+app.get("/logout", function(req, res){
+	req.session.destroy();
+	res.redirect("/view/admin");
+})
+
 app.use("/slider", Slider);
 app.use("/view", View);
 app.use("/playlist", Playlist)

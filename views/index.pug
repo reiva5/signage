@@ -10,15 +10,15 @@ html(lang='en')
 		link(rel='stylesheet', href='https://unpkg.com/bootstrap-material-design@4.0.0-beta.4/dist/css/bootstrap-material-design.min.css', integrity='sha384-R80DC0KVBO4GSTw+wZ5x2zn2pu4POSErBkf8/fSFhPXHxvHJydT0CSgAP2Yo2r4I', crossorigin='anonymous')
 	body
 		.slider-container.bg-dark
-			#carouselExampleIndicators.carousel.slide(data-ride='carousel')
+			#carouselExampleIndicators.carousel.slide.carousel-container(data-ride='carousel')
 				ol.carousel-indicators
 					li.active(data-target='#carouselExampleIndicators', data-slide-to='0')
 					li(data-target='#carouselExampleIndicators', data-slide-to='1')
 					li(data-target='#carouselExampleIndicators', data-slide-to='2')
-				.carousel-inner
+				.carousel-inner.carousel-container
 					- var index = 0;
 					for slider in sliders
-						div(class= index == 0 ? "carousel-item active" : "carousel-item")
+						div(class= index == 0 ? "carousel-item carousel-container active" : "carousel-item")
 							!= slider.slider_content
 						- index += 1;
 				a.carousel-control-prev(href='#carouselExampleIndicators', role='button', data-slide='prev')
@@ -32,3 +32,9 @@ html(lang='en')
 		script(src='https://unpkg.com/bootstrap-material-design@4.0.0-beta.4/dist/js/bootstrap-material-design.js', integrity='sha384-3xciOSDAlaXneEmyOo0ME/2grfpqzhhTcM4cE32Ce9+8DW/04AGoTACzQpphYGYe', crossorigin='anonymous')
 		script.
 			$(document).ready(function() { $('body').bootstrapMaterialDesign(); });
+			var w = $(window).width();
+			var h = $(window).height();
+			$('.slider-container').css('width', w);
+			$('.slider-container').css('height', h);
+			$('.carousel-container').css('width', w);
+			$('.carousel-container').css('height', h);

@@ -27,8 +27,20 @@ html(lang='en')
 				a.carousel-control-next(href='#carouselExampleIndicators', role='button', data-slide='next')
 					span.carousel-control-next-icon(aria-hidden='true')
 					span.sr-only Next
+		.footer
+			#left-bubble.left
+				.talk-bubble.tri-right.left-top.round
+					.talktext
+						a#left-bubble-text
+						i.material-icons android
+			#right-bubble.right
+				.talk-bubble.tri-right.right-top.round
+					.talktext
+						i.material-icons account_circle
+						a#right-bubble-text
+						
+
 		script(src='https://code.jquery.com/jquery-3.2.1.slim.min.js', integrity='sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN', crossorigin='anonymous')
 		script(src='https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js', integrity='sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U', crossorigin='anonymous')
 		script(src='https://unpkg.com/bootstrap-material-design@4.0.0-beta.4/dist/js/bootstrap-material-design.js', integrity='sha384-3xciOSDAlaXneEmyOo0ME/2grfpqzhhTcM4cE32Ce9+8DW/04AGoTACzQpphYGYe', crossorigin='anonymous')
-		script.
-			$(document).ready(function() { $('body').bootstrapMaterialDesign(); });
+		script(src="assets/js/slider.js" type="text/javascript")

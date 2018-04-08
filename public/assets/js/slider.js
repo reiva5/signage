@@ -13,9 +13,13 @@ $(document).ready(function() {
         active_chat = true;
         last_chat = time_now;
         session = time_now;
-        document.getElementById("left-bubble-text").innerHTML = "Halo, ada yang bisa saya bantu?";
-        document.getElementById("left-bubble").style.display = "block";
+        show_response_bubble("Halo, ada yang bisa saya bantu?");
         speak(msg, "Halo, ada yang bisa saya bantu?");
+    }
+
+    function show_response_bubble(text){
+        document.getElementById("left-bubble-text").innerHTML = text;
+        document.getElementById("left-bubble").style.display = "block";
     }
 
     function speak(speechTool, text){

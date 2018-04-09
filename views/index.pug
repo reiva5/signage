@@ -9,16 +9,16 @@ html(lang='en')
 		link(rel='stylesheet', href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons')
 		link(rel='stylesheet', href='https://unpkg.com/bootstrap-material-design@4.0.0-beta.4/dist/css/bootstrap-material-design.min.css', integrity='sha384-R80DC0KVBO4GSTw+wZ5x2zn2pu4POSErBkf8/fSFhPXHxvHJydT0CSgAP2Yo2r4I', crossorigin='anonymous')
 	body
-		.slider-container.bg-dark
-			#carouselExampleIndicators.carousel.slide(data-ride='carousel')
+		.slider-container
+			#carouselExampleIndicators.carousel.slide.carousel-container(data-ride='carousel')
 				ol.carousel-indicators
 					li.active(data-target='#carouselExampleIndicators', data-slide-to='0')
 					li(data-target='#carouselExampleIndicators', data-slide-to='1')
 					li(data-target='#carouselExampleIndicators', data-slide-to='2')
-				.carousel-inner
+				.carousel-inner.carousel-container
 					- var index = 0;
 					for slider in sliders
-						div(class= index == 0 ? "carousel-item active" : "carousel-item")
+						div(class= index == 0 ? "carousel-item carousel-container active" : "carousel-item")
 							!= slider.slider_content
 						- index += 1;
 				a.carousel-control-prev(href='#carouselExampleIndicators', role='button', data-slide='prev')
@@ -38,7 +38,6 @@ html(lang='en')
 					.talktext
 						i.material-icons account_circle
 						a#right-bubble-text
-						
 
 		script(src="https://code.jquery.com/jquery-3.3.1.js", integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=", crossorigin="anonymous")
 		script(src='https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js', integrity='sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U', crossorigin='anonymous')

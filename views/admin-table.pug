@@ -122,6 +122,24 @@ html(lang='en')
                     .modal-footer
                         button.btn.btn-secondary(type='button', data-dismiss='modal') Back
                         button.btn.btn-success(type='button', onclick= "submitAddPlaylist()") Add
+        #activePlaylistModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='activePlaylistModalLabel', aria-hidden='true')
+            .modal-dialog(role='document')
+                .modal-content
+                    .modal-header
+                        h5#deleteSlideModalLabel.modal-title Playlist
+                        button.close(type='button', data-dismiss='modal', aria-label='Close')
+                            span(aria-hidden='true') ×
+                    .modal-body
+                        | Playlist successfully being actived
+        #nonActivePlaylistModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='nonActivePlaylistModalLabel', aria-hidden='true')
+            .modal-dialog(role='document')
+                .modal-content
+                    .modal-header
+                        h5#deleteSlideModalLabel.modal-title Playlist
+                        button.close(type='button', data-dismiss='modal', aria-label='Close')
+                            span(aria-hidden='true') ×
+                    .modal-body
+                        | Playlist successfully being non-actived
         script(src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous")
         script(src='https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js', integrity='sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U', crossorigin='anonymous')
         script(src='https://unpkg.com/bootstrap-material-design@4.0.0-beta.4/dist/js/bootstrap-material-design.js', integrity='sha384-3xciOSDAlaXneEmyOo0ME/2grfpqzhhTcM4cE32Ce9+8DW/04AGoTACzQpphYGYe', crossorigin='anonymous')

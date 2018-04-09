@@ -2,11 +2,14 @@ var DB = require("./db");
 var Promise = require("promise");
 var db;
 var method = Slider.prototype;
+var request = require('request');
+
 function Slider(){
     this.slider_id = null;
     this.playlist_id = null;
     this.slider_name = null;
-    this.slider_content = null;
+    this.slider_content = null
+    this.dialog_flow_access_token = '3db08300491841ad95a8acd25a8910b8';
     db = new DB();
 }
 
@@ -128,6 +131,37 @@ method.getSliderbyActive = function(){
         });
     });
 }
+
+method.voiceQuery = function(message, session) {
+    var requestJSON = 
+    {originalRequest: 
+        {data: {exampleMessage: 'Signage'}}, 
+        query: message, 
+        lang: 'id-ID', 
+        sessionId: session
+    };
+
+    request({
+        url : 'https://api.dialogflow.com/v1/query?v=20150910',
+        method : 'POST',
+        data: JSON.stringify(
+                {originalRequest: 
+                    {data: {exampleMessage: 'Signage'}}, 
+                    query: message, 
+                    lang: 'id-ID', 
+                    sessionId: session
+                }),
+        json : true,
+        headers: {
+            'Authorization': 'BEARER ' + this.dialog_flow_access_token,   //If your header name has spaces or any other char not appropriate
+            'Content-Type' : 'application/json'  //for object property name, use quoted notation shown in second
+        },
+        dataType: 'json'
+    , function(response) {
+        console.log(respone);
+    }})
+}
+
 method.destroy = function(){
     db.disconnect();
 }

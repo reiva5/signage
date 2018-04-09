@@ -125,4 +125,11 @@ router.post("/add", function(req, res){
     });
 });
 
+router.post("/voice_query", function(req, res){
+    var slider = new Slider();
+    var message = req.body.message;
+    var session = req.body.session;
+    slider.voiceQuery(message, session);
+});
+
 module.exports = router;

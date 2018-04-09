@@ -8,18 +8,14 @@ $(document).ready(function() {
     var last_chat = null;
     var time_now = null;
     var session = null;
-    var w = $(window).width();
-    var h = $(window).height();
-    $('.slider-container').css('width', w);
-    $('.slider-container').css('height', h);
-    $('.carousel-container').css('width', w);
-    $('.carousel-container').css('height', h);
-    function open_chat(){
+    var last_response = "Halo, ada yang bisa saya bantu ?";
+
+    function open_chat(lastResponse){
         active_chat = true;
         last_chat = time_now;
         session = time_now;
-        show_response_bubble("Halo, ada yang bisa saya bantu?");
-        speak(msg, "Halo, ada yang bisa saya bantu?");
+        show_response_bubble(lastResponse);
+        speak(msg, lastResponse);
     }
 
     function show_response_bubble(text){
@@ -34,6 +30,33 @@ $(document).ready(function() {
             document.getElementById("left-bubble").style.display = "none";
         }
     }
+// 
+     function sendVoiceQuery(userQuery, userSession) {
+        $.ajax({
+            url: 'https://api.dialogflow.com/v1/query?v=20150910',
+            type: 'post',
+            contentType: "application/json; charset=utf-8",
+            dataType : 'json',
+            headers: {
+                'Authorization': 'BEARER ' + '3db08300491841ad95a8acd25a8910b8',   //If your header name has spaces or any other char not appropriate
+            },
+            data: JSON.stringify(
+                {originalRequest: 
+                    {data: {exampleMessage: 'Signage'}}, 
+                    contexts: ["active"],
+                    query: userQuery, 
+                    lang: 'id-ID', 
+                    sessionId: session
+                }),
+        }).done (function (data) {
+            console.log("Result : " + JSON.stringify(data));
+            console.log("Speech : " +  (data.result.fulfillment.speech));
+            var msg = new SpeechSynthesisUtterance(JSON.stringify(data.result.fulfillment.speech));
+            msg.volume = 10;
+            last_response = data.result.fulfillment.speech;
+            window.speechSynthesis.speak(msg);
+        });
+    }
 
 	if (!('webkitSpeechRecognition' in window && 'speechSynthesis' in window)) {
 		alert('Recognition not supported!\n Please use Chrome version 25 or later');
@@ -46,7 +69,6 @@ $(document).ready(function() {
 		recognition.lang = 'id-ID';
 
 		recognition.onstart = function(){
-			// console.log("recognizing");
 		}
 
 		recognition.onerror = function(){
@@ -85,24 +107,27 @@ $(document).ready(function() {
                 for (var i = event.resultIndex; i < event.results.length; ++i) {
                     // console.log("masuk");
                     if (event.results[i].isFinal) {
-                        final_transcript += event.results[i][0].transcript;
-                        // console.log(final_transcript);
-                        if (final_transcript.toLowerCase() == "halo") {
-                            open_chat();
+                        for (var j = 0; event.results[i][j]; j++ ) {
+                            final_transcript += event.results[i][j].transcript;
                         }
+                        userQuery = final_transcript.toLowerCase();
+                        sendVoiceQuery(userQuery, session);    
+                        open_chat(last_response);                         
                     }
                 }
             } else if (active_chat && time_now - last_chat <= 60*1000) {
                 for (var i = event.resultIndex; i < event.results.length; ++i) {
                     // console.log("active");
                     if (event.results[i].isFinal) {
-                        final_transcript += event.results[i][0].transcript;
-                        if (final_transcript.toLowerCase() == "halo"){
-                            open_chat();
-                        } else {
-                            document.getElementById("right-bubble-text").innerHTML = final_transcript;
+                        for (var j = 0; event.results[i][j]; j++ ) {
+                            final_transcript += event.results[i][j].transcript;
                         }
-                    //   console.log(final_transcript);
+                        console.log(final_transcript[0]);
+                        userQuery = final_transcript.toLowerCase();
+                        sendVoiceQuery(userQuery, session);
+                        document.getElementById("right-bubble-text").innerHTML = final_transcript;
+                        open_chat(last_response);
+                        //   console.log(final_transcript);
                     } else {
                         interim_transcript += event.results[i][0].transcript;
                         document.getElementById("right-bubble-text").innerHTML = interim_transcript;

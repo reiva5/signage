@@ -4,9 +4,9 @@ var conn;
 var method = DB.prototype;
 function DB(){
     conn = mysql.createConnection({
-        host: "phpmyadmin.ctbm9xc1oi6i.ap-southeast-1.rds.amazonaws.com",
-        user: "phpmyadmin",
-        password: "phpmyadmin",
+        host: "localhost",
+        user: "root",
+        password: "Hwhrskxk1!",
         database: "signage"
     });
 

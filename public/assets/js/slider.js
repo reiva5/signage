@@ -29,6 +29,49 @@ $(document).ready(function() {
             document.getElementById("left-bubble").style.display = "none";
         }
     }
+// 
+     function sendVoiceQuery(userQuery, userSession) {
+        $.ajax({
+            url: 'https://api.dialogflow.com/v1/query?v=20150910',
+            type: 'post',
+            contentType: "application/json; charset=utf-8",
+            dataType : 'json',
+            headers: {
+                'Authorization': 'BEARER ' + '3db08300491841ad95a8acd25a8910b8',   //If your header name has spaces or any other char not appropriate
+            },
+            data: JSON.stringify(
+                {originalRequest: 
+                    {data: {exampleMessage: 'Signage'}}, 
+                    contexts: ["active"],
+                    query: userQuery, 
+                    lang: 'id-ID', 
+                    sessionId: session
+                }),
+        }).done (function (data) {
+            console.log("Result : " + JSON.stringify(data));
+            console.log("Speech : " +  JSON.stringify(data.result.fulfillment.speech));
+            var msg = new SpeechSynthesisUtterance(JSON.stringify(data.result.fulfillment.speech));
+            msg.volume = 10;
+
+            window.speechSynthesis.speak(msg);
+        });
+
+
+        // $.post(
+        //     "/slider/voice_query", 
+        //     {
+        //         message : "Hello STEI",
+        //         session : userSession
+        //     },
+        //     function (data, status) {
+        //         if (data.status == "success"){
+        //             console.log('Query sueccess !!');
+        //         } else {
+        //             console.log('Query failed');
+        //         }
+        //     }
+        // );
+    }
 
 	if (!('webkitSpeechRecognition' in window && 'speechSynthesis' in window)) {
 		alert('Recognition not supported!\n Please use Chrome version 25 or later');
@@ -41,7 +84,11 @@ $(document).ready(function() {
 		recognition.lang = 'id-ID';
 
 		recognition.onstart = function(){
-			// console.log("recognizing");
+            var msg = new SpeechSynthesisUtterance("SELAMAT DATANG");
+            msg.volume = 10;
+
+            window.speechSynthesis.speak(msg);
+
 		}
 
 		recognition.onerror = function(){
@@ -80,23 +127,27 @@ $(document).ready(function() {
                 for (var i = event.resultIndex; i < event.results.length; ++i) {
                     // console.log("masuk");
                     if (event.results[i].isFinal) {
-                        final_transcript += event.results[i][0].transcript;
-                        // console.log(final_transcript);
-                        if (final_transcript.toLowerCase() == "halo") {
-                            open_chat();
+                        for (var j = 0; event.results[i][j]; j++ ) {
+                            final_transcript += event.results[i][j].transcript;
                         }
+                        console.log(final_transcript[0]);
+                            open_chat();
+                             userQuery = final_transcript.toLowerCase();
+                            sendVoiceQuery(userQuery, session);
                     }
                 }
             } else if (active_chat && time_now - last_chat <= 60*1000) {
                 for (var i = event.resultIndex; i < event.results.length; ++i) {
                     // console.log("active");
                     if (event.results[i].isFinal) {
-                        final_transcript += event.results[i][0].transcript;
-                        if (final_transcript.toLowerCase() == "halo"){
-                            open_chat();
-                        } else {
-                            document.getElementById("right-bubble-text").innerHTML = final_transcript;
+                        for (var j = 0; event.results[i][j]; j++ ) {
+                            final_transcript += event.results[i][j].transcript;
                         }
+                        console.log(final_transcript[0]);
+                            open_chat();
+                             userQuery = final_transcript.toLowerCase();
+                            sendVoiceQuery(userQuery, session);
+                            document.getElementById("right-bubble-text").innerHTML = final_transcript;
                     //   console.log(final_transcript);
                     } else {
                         interim_transcript += event.results[i][0].transcript;

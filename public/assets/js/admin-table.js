@@ -165,6 +165,12 @@ function setActive(inputId){
         function (data, status){
             console.log(JSON.stringify(data));
             console.log(status);
+            if(playlist_active==1){
+                $('#activePlaylistModal').modal('show');
+            }else{
+                $('#nonActivePlaylistModal').modal('show');
+            }
         }
     );
+
 }

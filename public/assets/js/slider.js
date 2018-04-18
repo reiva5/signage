@@ -1,7 +1,7 @@
 $(document).ready(function() { 
     $('body').bootstrapMaterialDesign(); 
-    document.getElementById("right-bubble").style.display = "none";
-	document.getElementById("left-bubble").style.display = "none";
+    //document.getElementById("right-bubble").style.display = "none";
+	//document.getElementById("left-bubble").style.display = "none";
 	var final_transcript ="";
     var bubble_active = false;
     var active_chat = false;
@@ -14,7 +14,7 @@ $(document).ready(function() {
         active_chat = true;
         last_chat = time_now;
         session = time_now;
-        show_response_bubble(lastResponse);
+        add_response_bubble(lastResponse);
         speak(msg, lastResponse);
     }
 
@@ -22,12 +22,52 @@ $(document).ready(function() {
         document.getElementById("left-bubble-text").innerHTML = text;
         document.getElementById("left-bubble").style.display = "block";
     }
-
+    function create_new_input_bubble(id,text){
+        let new_bubble = document.createElement("div");
+        let bubble_text = document.createElement("div");
+        let inner_text = document.createElement("a");
+        let inner_icon = document.createElement("i");
+        inner_icon.setAttribute('class','material-icons');
+        inner_icon.innerHTML('account_circle');
+        new_bubble.classList.add("talk-bubble tri-right right-top round"); 
+        new_bubble.setAttribute('id','right-bubble-text_'+id);
+        //inner_text.setAttribute("id","left-bubble-text_1");
+        inner_text.innerHTML(text);
+        bubble_text.classList.add("talktext");
+        bubble_text.appendChild(inner_icon);
+        bubble_text.appendChild(inner_text);
+        new_bubble.innerHTML(bubble_text);
+        document.getElementById('right-bubble').appendChild(new_bubble);
+    }
+    function set_input_text(idx, text){
+        let bubble = document.getElementById('right-bubble-text_'+idx);
+        if(bubble.length>0){
+            document.getElementById('right-bubble-text_'+idx).innerHTML(text);
+        }else{
+            create_new_input_bubble(idx,text);
+        }
+    }
+    function add_response_bubble(text){
+        let new_response = document.createElement("div");
+        let response_text = document.createElement("div");
+        let inner_text = document.createElement("a");
+        let inner_icon = document.createElement("i");
+        inner_icon.setAttribute('class','material-icons');
+        inner_icon.innerHTML('android');
+        new_response.classList.add("talk-bubble tri-right left-top round"); 
+        new_response.setAttribute("id","left-bubble-text_1");
+        inner_text.innerHTML(text);
+        response_text.classList.add("talktext");
+        response_text.appendChild(inner_icon);
+        response_text.appendChild(inner_text);
+        new_response.innerHTML(response_text);
+        document.getElementById("left-bu bble").appendChild(new_response);
+    }
     function speak(speechTool, text){
         speechTool.text = 'Halo, ada yang bisa saya bantu?';
         window.speechSynthesis.speak(speechTool);
         speechTool.onend = function(){
-            document.getElementById("left-bubble").style.display = "none";
+            //document.getElementById("left-bubble").style.display = "none";
         }
     }
 // 
@@ -84,8 +124,8 @@ $(document).ready(function() {
             // console.log("speech start");
             time_now = new Date().getTime();
 			if (!bubble_active && active_chat && time_now - last_chat <= 60*1000){
-                document.getElementById("right-bubble-text").innerHTML = "";
-				document.getElementById("right-bubble").style.display = "block";
+                // document.getElementById("right-bubble-text").innerHTML = "";
+				// document.getElementById("right-bubble").style.display = "block";
                 bubble_active = true;
 			}
 		}
@@ -93,8 +133,8 @@ $(document).ready(function() {
 		recognition.onspeechend = function(){
 			// console.log("speech end");
 			if (bubble_active){
-                document.getElementById("right-bubble-text").innerHTML = "";
-				document.getElementById("right-bubble").style.display = "none";
+                // document.getElementById("right-bubble-text").innerHTML = "";
+				// document.getElementById("right-bubble").style.display = "none";
                 bubble_active = false;
             }	
             final_transcript = "";
@@ -125,12 +165,14 @@ $(document).ready(function() {
                         console.log(final_transcript[0]);
                         userQuery = final_transcript.toLowerCase();
                         sendVoiceQuery(userQuery, session);
-                        document.getElementById("right-bubble-text").innerHTML = final_transcript;
+                        //document.getElementById("right-bubble-text").innerHTML = final_transcript;
+                        set_input_text(id,final_transcript);
                         open_chat(last_response);
                         //   console.log(final_transcript);
                     } else {
                         interim_transcript += event.results[i][0].transcript;
-                        document.getElementById("right-bubble-text").innerHTML = interim_transcript;
+                        //document.getElementById("right-bubble-text").innerHTML = interim_transcript;
+                        set_input_text(id,interim_transcript);
                     //   console.log(interim_transcript);
                     }
                 }
